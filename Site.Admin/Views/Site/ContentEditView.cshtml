@@ -1,0 +1,151 @@
+﻿@{
+    ViewBag.Title = "ContentEditView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Site.Service.SiteService.SiteServices;
+@using Site.Admin.Common;
+@using Site.Common;
+@{
+    Site_Content info = ViewData["info"] as Site_Content;
+    string c_gid = ViewBag.c_gid;
+    string cate_gid = ViewBag.cate_gid;
+}
+@section head{
+
+    <script src="~/UEdit/ueditor.config.js"></script>
+    <script src="~/UEdit/ueditor.all.js"></script>
+    <script src="~/UEdit/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript">
+        var ue;
+        $(function () {
+            $("#btnSubmit").button({
+                icons: {
+                    primary: "ui-icon-check "
+                }
+            });
+            $("#btnCancle").button({
+                icons: {
+                    primary: "ui-icon-closethick "
+                }
+            });
+
+            $("#tabs").tabs();
+
+            ue = UE.getEditor('editor', {
+                elementPathEnabled: false
+            });
+        });
+
+        function btnSubmitClick() {
+            if ($("#i_title").val().length <= 0) {
+                parent.mDialogUI.message("标题不能为空", "提示", 180, 50, 2);
+                return false;
+            }
+            if ($("#i_subTitle").val().length <= 0) {
+                parent.mDialogUI.message("短标题不能为空", "提示", 180, 50, 2);
+                return false;
+            }
+
+            if ($("#c_keywords").val().length <= 0) {
+                parent.mDialogUI.message("关键词不能为空", "提示", 180, 50, 2);
+                return false;
+            }
+
+            if ($("#c_intro").val().length <= 0) {
+                parent.mDialogUI.message("内容简介不能为空", "提示", 180, 50, 2);
+                return false;
+            }
+
+            var _content = ue.getContent();
+            if (_content.length <= 0) {
+                parent.mDialogUI.message("详细不能为空", "提示", 180, 50, 2);
+                return false;
+            }
+
+            var data = {
+                c_title: $("#i_title").val(),
+                c_keywords: $("#c_keywords").val(),
+                c_subTitle: $("#i_subTitle").val(),
+                c_content: _content,
+                c_intro: $("#c_intro").val(),
+                c_gid: $("#c_gid").val(),
+                cate_gid: '@cate_gid'
+
+            };
+
+            $.ajax({
+                url: "/Site/SiteContentEdit",
+                type: "post",
+                dataType: "json",
+                cache: false,
+                data: data,
+                success: function (json) {
+                    if (json.success) {
+                        parent.mDialogUI.successMessage(json.errors.text, "成功", 180, 70, 2);
+                        parent.SearchListByCateId(parent.querys.cateId, parent.querys.page);
+                        parent.mDialogUI.closeWindow('@ViewData["window"]');
+                    }
+                    else {
+                        parent.mDialogUI.errorMessage(json.errors.text, "失败", 180, 70, 2);
+                    }
+                },
+                error: function (xhr, xhrText, error) {
+                    parent.mDialogUI.errorMessage(error, "错误", 200, 70);
+                }
+            });
+        }
+    </script>
+
+
+}
+
+<div class="container-10">
+
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">基本信息</a></li>
+            <li><a href="#tabs-2">详细内容</a></li>
+            <li><a href="#tabs-3">Aenean lacinia</a></li>
+        </ul>
+        <div id="tabs-1">
+            <table class="editTable">
+                <tr>
+                    <td><span class="red">*</span>标题：</td>
+                    <td>
+                        <input name="i_title" id="i_title" type="text" style="width: 240px;" value="@info.c_title" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="red">*</span>短标题：</td>
+                    <td>
+                        <input name="i_subTitle" id="i_subTitle" type="text" style="width: 240px;" value="@info.c_sub_title" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="red">*</span>关键词：</td>
+                    <td>
+                        <input name="c_keywords" id="c_keywords" type="text" style="width: 240px;" value="@info.c_keywords" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="red">*</span>内容简介：</td>
+                    <td>
+                        <textarea rows="5" name="c_intro" id="c_intro" type="text" style="width: 240px;">@info.c_intro</textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="tabs-2">
+            <script id="editor" type="text/plain" style="width:100%;height:100%;">@Html.Raw(info.c_content)</script>
+        </div>
+        <div id="tabs-3">
+            <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+            <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+        </div>
+
+        <div style="float: right; margin-top: 10px;">
+            <input type="hidden" name="c_gid" id="c_gid" value="@info.c_gid" />
+            <button id="btnSubmit" onclick="btnSubmitClick();">确定</button>
+            <button id="btnCancle" onclick="parent.mDialogUI.closeWindow('@ViewData["window"]');">取消</button>
+        </div>
+    </div>

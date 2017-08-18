@@ -1,0 +1,28 @@
+﻿@using Site.Service.SiteService.SiteServices;
+@{
+    List<Site_Cates> list = ViewData["list"] as List<Site_Cates>;
+}
+
+
+@foreach (var item in list)
+{
+    if (item.c_path.Length == 4)
+    {
+        <a href="javascript:void(0)" cateId="@item.c_gid">@item.c_name</a>
+    }
+}
+
+<script>
+    $(function () {
+        $("#div_cate_list").find("a").click(function () {
+            $(this).addClass("hint_cate_cur").siblings().removeClass("hint_cate_cur");
+            var cate_gid = $(this).attr("cateId");
+            if (cate_gid) {
+                $("#cate_gid").val(cate_gid);
+                SearchListByCateId(cate_gid,1);
+            }
+        });
+    })
+
+
+</script>

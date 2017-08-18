@@ -1,0 +1,11 @@
+﻿@using Site.Service.SiteService.SiteServices;
+@{
+    Dictionary<string, List<Site_CMSItem>> dic = ViewBag.dataList;
+}
+@if (dic.Count > 0)
+{
+    @*foreach (Site_CMSItem item in dic["10"])
+    {
+        <span>@item.i_title</span>
+    }*@
+}
