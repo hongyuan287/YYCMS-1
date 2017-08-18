@@ -63,6 +63,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="i_b_gid" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="i_c_gid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="i_c_img_src" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="i_c_type" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="i_createTime" type="xs:dateTime" />
       <xs:element minOccurs="0" name="i_createUser" nillable="true" type="xs:string" />

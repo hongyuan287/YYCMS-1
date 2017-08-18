@@ -143,6 +143,22 @@ namespace Site.SiteModel
         }
         #endregion
 
+        #region i_c_img_src
+        private string _i_c_img_src;
+        public string i_c_img_src
+        {
+            get
+            {
+                return this._i_c_img_src;
+            }
+            set
+            {
+                this._i_c_img_src = value;
+            }
+        }
+        #endregion
+
+
         #region i_status
         private int _i_status;
         public int i_status

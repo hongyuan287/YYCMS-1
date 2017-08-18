@@ -13,6 +13,7 @@
             <input class="chk chk_correct" type="checkbox" id="chkall" name="chkall" value="" />
         </th>
         <th style="text-align: center">序号</th>
+        <th style="text-align: center">封面</th>
         <th style="text-align: left">标题</th>
         <th style="text-align: center">简介</th>
         <th style="text-align: center">状态</th>
@@ -29,6 +30,9 @@
                     <input class="chk" type="checkbox" id="chk_@i" name="chk_@i" value="@item.c_gid" />
                 </td>
                 <td style="text-align: center">@i</td>
+                <td style="text-align: center">
+                    <img src="@item.c_img_src" width="30" height="30" alt="" sort="img_@i" />
+                </td>
                 <td style="text-align: left">@item.c_title<br /><span class="red">短标题：@item.c_sub_title</span></td>
                 <td style="text-align: center">@item.c_intro</td>
                 <td style="text-align: center">
@@ -45,15 +49,15 @@
                     <a href="javascript:void(0);" class="op" onclick="btnRecommend('@item.c_gid')">荐</a>
                 </td>
             </tr>
-        i++;
-    }
-}
-else
-{
-    <tr>
-        <td style="text-align: center" colspan="8">暂无任何数据</td>
-    </tr>
-}
+                                i++;
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td style="text-align: center" colspan="8">暂无任何数据</td>
+                            </tr>
+                        }
 </table>
 <div id="itemPageBar" class="page"></div>
 
@@ -79,6 +83,21 @@ else
                 $("input[name^='chk_']").removeAttr("checked");
             }
         });
+
+        //封面
+        $("img[sort^='img_']").hover(function () {
+            $("#div_list").append("<img src='" + $(this).attr("src") + "' id='pic' />");
+            $("img[sort^='img_']").mousemove(function (e) {
+                $("#pic").css({
+                    "top": (e.pageY + 10) + "px",
+                    "left": (e.pageX + 20) + "px",
+                    "position":"absolute"
+                }).fadeIn("fast");
+            });
+        }, function () {
+            $("#pic").remove();
+        });
+
 
 
         //页码条

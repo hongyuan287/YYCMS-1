@@ -470,7 +470,8 @@ namespace Site.SiteAccess
             db.AddInParameter(dbCmd, "@i_c_gid", DbType.String, obj.i_c_gid);
             db.AddInParameter(dbCmd, "@i_c_type", DbType.String, obj.i_c_type);
             db.AddInParameter(dbCmd, "@i_subTitle", DbType.String, obj.i_subTitle);
-            db.AddInParameter(dbCmd, "@i_intro", DbType.String, obj.i_intro);
+            db.AddInParameter(dbCmd, "@i_intro", DbType.String, obj.i_intro); 
+            db.AddInParameter(dbCmd, "@i_c_img_src", DbType.String, obj.i_c_img_src); 
             db.AddInParameter(dbCmd, "@i_status", DbType.Int32, obj.i_status);
             db.AddInParameter(dbCmd, "@i_createUser", DbType.String, obj.i_createUser);
             db.AddInParameter(dbCmd, "@i_createTime", DbType.String, obj.i_createTime);
@@ -517,6 +518,7 @@ namespace Site.SiteAccess
             db.AddInParameter(dbCmd, "@i_c_type", DbType.String, obj.i_c_type);
             db.AddInParameter(dbCmd, "@i_subTitle", DbType.String, obj.i_subTitle);
             db.AddInParameter(dbCmd, "@i_intro", DbType.String, obj.i_intro);
+            db.AddInParameter(dbCmd, "@i_c_img_src", DbType.String, obj.i_c_img_src);
             db.AddInParameter(dbCmd, "@i_status", DbType.Int32, obj.i_status);
             db.AddInParameter(dbCmd, "@i_createUser", DbType.String, obj.i_createUser);
             db.AddInParameter(dbCmd, "@i_createTime", DbType.String, obj.i_createTime);

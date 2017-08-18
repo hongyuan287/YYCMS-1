@@ -9,6 +9,7 @@ using Site.Admin.Common;
 using Site.Service.SiteService.SiteServices;
 using Site.Service.SiteService.Search;
 using Site.Admin.Filter;
+using System.Text.RegularExpressions;
 
 namespace Site.Admin.Controllers
 {
@@ -667,7 +668,13 @@ namespace Site.Admin.Controllers
             info.c_intro = c_intro;
             info.c_img_src = string.Empty;
 
-
+            //默认第一张图片为封面
+            MatchCollection list = Regex.Matches(c_content, @"<img src=""(?<img>[\S]*)""[^/]*/>");
+            if (list.Count > 0)
+            {
+                string img_src = list[0].Groups["img"].Value;
+                info.c_img_src = img_src;
+            }
 
             if (string.IsNullOrEmpty(c_gid))
             {
@@ -823,6 +830,9 @@ namespace Site.Admin.Controllers
                 item.i_status = (int)SiteEnum.SiteItemStatus.待审核;
                 item.i_subTitle = content.c_sub_title;
                 item.i_title = content.c_sub_title;
+                item.i_c_img_src = content.c_img_src;
+
+
                 result = SiteServiceClass.Site_CMSItem_Insert(item);
                 if (result > 0)
                 {
@@ -848,8 +858,6 @@ namespace Site.Admin.Controllers
 
 
         #endregion
-
-
 
     }
 }

@@ -532,6 +532,9 @@ namespace Site.Service.SiteService.SiteServices {
         private string i_c_gidField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string i_c_img_srcField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string i_c_typeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -593,6 +596,19 @@ namespace Site.Service.SiteService.SiteServices {
                 if ((object.ReferenceEquals(this.i_c_gidField, value) != true)) {
                     this.i_c_gidField = value;
                     this.RaisePropertyChanged("i_c_gid");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string i_c_img_src {
+            get {
+                return this.i_c_img_srcField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.i_c_img_srcField, value) != true)) {
+                    this.i_c_img_srcField = value;
+                    this.RaisePropertyChanged("i_c_img_src");
                 }
             }
         }
