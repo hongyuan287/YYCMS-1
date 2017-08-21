@@ -245,6 +245,38 @@
         }
 
 
+        function btachDelete(b_gid) {
+            var chked = GetCheck();
+            if (chked.length == 0) {
+                mDialogUI.message("未选择信息", "提示", 180, 50, 2);
+                return;
+            }
+            var i_gids = "";
+            $(chked).each(function (index, elem) {
+                i_gids += $(elem).val() + ",";
+            });
+            btnDeleteItem(i_gids);
+
+        }
+
+        function btachCheck(b_gid) {
+            var chked = GetCheck();
+            if (chked.length == 0) {
+                mDialogUI.message("未选择信息", "提示", 180, 50, 2);
+                return;
+            }
+            var i_gids = "";
+            $(chked).each(function (index, elem) {
+                i_gids += $(elem).val() + ",";
+            });
+            btnCheckItem(i_gids, b_gid);
+        }
+
+        function GetCheck() {
+            return $("input[name^='chk_']:checked");
+        }
+
+
     </script>
 }
 

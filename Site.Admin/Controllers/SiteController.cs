@@ -529,32 +529,70 @@ namespace Site.Admin.Controllers
         {
             string i_gid = Request["i_gid"] ?? string.Empty;
 
-            int result = SiteServiceClass.Site_CMSItem_DeleteByi_gid(i_gid);
-            if (result > 0)
+            int successCount = 0;
+            int failCount = 0;
+            int result = 0;
+            string[] i_gidArr = i_gid.Split(new string[] { ",", "，" }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < i_gidArr.Length; i++)
+            {
+                result = SiteServiceClass.Site_CMSItem_DeleteByi_gid(i_gidArr[i]);
+                if (result > 0)
+                {
+                    successCount++;
+                }
+                else
+                {
+                    failCount++;
+                }
+            }
+
+            if (i_gidArr.Length == 1)
             {
                 return Json(new { success = true, errors = new { text = "删除成功" } });
             }
             else
             {
-                return Json(new { success = false, errors = new { text = "删除失败" } });
+                return Json(new { success = true, errors = new { text = string.Format("删除成功{0}条，失败{1}条", successCount, failCount) } });
+
             }
+
         }
 
         public ActionResult SiteCMSItemCheck()
         {
             string i_gid = Request["i_gid"] ?? string.Empty;
             int status = Request["status"].ToInt32(1);
-            Site_CMSItem info = SiteServiceClass.Site_CMSItem_SelectByi_gid(i_gid);
-            info.i_status = status;
-            int result = SiteServiceClass.Site_CMSItem_UpdateByi_gid(info);
-            if (result > 0)
+
+            int successCount = 0;
+            int failCount = 0;
+            int result = 0;
+            Site_CMSItem info = null;
+            string[] i_gidArr = i_gid.Split(new string[] { ",", "，" }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < i_gidArr.Length; i++)
+            {
+                info = SiteServiceClass.Site_CMSItem_SelectByi_gid(i_gidArr[i]);
+                info.i_status = status;
+                result = SiteServiceClass.Site_CMSItem_UpdateByi_gid(info);
+                if (result > 0)
+                {
+                    successCount++;
+                }
+                else
+                {
+                    failCount++;
+                }
+            }
+
+            if (i_gidArr.Length == 1)
             {
                 return Json(new { success = true, errors = new { text = "审核成功" } });
             }
             else
             {
-                return Json(new { success = false, errors = new { text = "审核失败" } });
+                return Json(new { success = true, errors = new { text = string.Format("审核成功{0}条，失败{1}条", successCount, failCount) } });
+
             }
+
         }
 
 

@@ -13,12 +13,18 @@
     @if (!string.IsNullOrEmpty(b_gid))
     {
         <button id="btn_addItem" onclick="btnEditItem(true, '','@b_gid');">信息项</button>
+        <button id="btn_btachCheck" onclick="btachCheck('@b_gid');">批量审核</button>
+        <button id="btn_btachDelete" onclick="btachDelete();">批量删除</button>
     }
     <button id="btn_i_publish" onclick="btnPublish();">发布</button>
+    
 </div>
 
 <table class="tableClass">
     <tr>
+        <th style="text-align: center">
+            <input class="chk chk_correct" type="checkbox" id="chkall" name="chkall" value="" />
+        </th>
         <th style="text-align: center">序号</th>
         <th style="text-align: center">封面</th>
         <th style="text-align: left">标题</th>
@@ -33,6 +39,9 @@
         foreach (Site_CMSItem item in list)
         {
             <tr>
+                <td style="text-align: center">
+                    <input class="chk" type="checkbox" id="chk_@i" name="chk_@i" value="@item.i_gid" />
+                </td>
                 <td style="text-align: center">@i</td>
                 <td style="text-align: center">
                     <img src="@item.i_c_img_src" width="30" height="30" alt="" sort="img_@i" />
@@ -77,6 +86,19 @@
             }
         });
 
+        $("#btn_btachCheck").button({
+            icons: {
+                primary: "ui-icon-check"
+            }
+        });
+
+        $("#btn_btachDelete").button({
+            icons: {
+                primary: "ui-icon-trash"
+            }
+        });
+
+
         //封面
         $("img[sort^='img_']").hover(function () {
             $("#div_list_item").append("<img src='" + $(this).attr("src") + "' id='pic' />");
@@ -91,10 +113,23 @@
             $("#pic").remove();
         });
 
+        
+        $("#chkall").click(function () {
+            var isChk = $(this).is(":checked");
+            if (isChk) {
+                $("input[name^='chk_']").attr("checked", "checked");
+            }
+            else {
+                $("input[name^='chk_']").removeAttr("checked");
+            }
+        });
+
         //页码条
         UserPage.MakePageBar("itemPageBar", '@rowCount', '@pageSize', function () {
             LoadListItem(UserPage.currentPage);
         });
+
+        //数据表样式
         $(".tableClass tr:gt(0)").mouseenter(function () {
             $(this).addClass("mouseOver");
         }).mouseleave(function () {
@@ -103,4 +138,5 @@
             $(this).addClass("mouseClick").siblings().removeClass("mouseClick");
         });
     });
+
 </script>
