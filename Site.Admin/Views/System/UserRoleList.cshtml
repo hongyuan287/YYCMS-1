@@ -26,7 +26,7 @@
             _lab.toggleClass("red");
             var _id = _lab.attr("val");
             var rgid = _lab.attr("rgid");
-            var _val = $(this).get(0).checked == true ? 0 : 1;// 取选中后的值
+            var _val = $(this).is(":checked") == true ? 1 : 0;// 取选中后的值
             opraterPer('@u_gid', rgid, _val);
 
         });
