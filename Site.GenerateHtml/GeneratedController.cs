@@ -10,6 +10,7 @@ using Site.Service.SiteService;
 using System.Configuration;
 using Site.Service.SiteService.Search;
 using Site.Common;
+using Site.Service.SiteService.PublishPageService;
 
 namespace GenerateHtml
 {
@@ -30,17 +31,18 @@ namespace GenerateHtml
 
 
 
-            if (!string.IsNullOrEmpty(p_path))
-            {
-                string basePath = ConfigurationManager.AppSettings[p_path];
-                if (string.IsNullOrEmpty(basePath))
-                {
-                    return Json(new { success = false, errors = new { text = "未指定生成基地址" } }, "text/html", JsonRequestBehavior.AllowGet);
-                }
-                generatePath = generatePath.Replace("~", basePath);
-            }
+            //if (!string.IsNullOrEmpty(p_path))
+            //{
+            //    string basePath = ConfigurationManager.AppSettings[p_path];
+            //    if (string.IsNullOrEmpty(basePath))
+            //    {
+            //        return Json(new { success = false, errors = new { text = "未指定生成基地址" } }, "text/html", JsonRequestBehavior.AllowGet);
+            //    }
+            //    generatePath = generatePath.Replace("~", basePath);
+            //}
+
             tempFilePath = tempFilePath.Replace("/", "\\");
-            generatePath = generatePath.Replace("/", "\\");
+            generatePath = generatePath.Replace("~", "").Replace("/", "\\");
             //查询页面下的区块数据 <路径，数据项>
             Dictionary<string, List<Site_CMSItem>> dic = new Dictionary<string, List<Site_CMSItem>>();
 
@@ -76,7 +78,7 @@ namespace GenerateHtml
         /// 生成静态页面
         /// </summary>
         /// <param name="tempFilePath">模板文件全路径</param>
-        /// <param name="generatePath">生成文件全路径</param>
+        /// <param name="generatePath">生成文件相对路径</param>
         /// <param name="dic">ViewData</param>
         /// <param name="tempDic">TempData</param>
         /// <param name="context">控制器上下文</param>
@@ -133,7 +135,7 @@ namespace GenerateHtml
         /// <summary>
         /// 生成页面文件
         /// </summary>
-        /// <param name="generatePath">生成文件的全路径</param>
+        /// <param name="generatePath">生成文件的相对路径</param>
         /// <param name="content">生成的页面内容</param>
         /// <param name="error"></param>
         /// <returns></returns>
@@ -142,15 +144,13 @@ namespace GenerateHtml
             error = "发布完成";
             try
             {
-
-                //string fullPath = Server.MapPath(generatePath);
-                string fullPath = generatePath;
-                int _index = fullPath.LastIndexOf(@"\");
-                string directoryPath = fullPath.Substring(0, _index);
-                if (!System.IO.Directory.Exists(directoryPath))
-                {
-                    System.IO.Directory.CreateDirectory(directoryPath);
-                }
+                //string fullPath = generatePath;
+                //int _index = fullPath.LastIndexOf(@"\");
+                //string directoryPath = fullPath.Substring(0, _index);
+                //if (!System.IO.Directory.Exists(directoryPath))
+                //{
+                //    System.IO.Directory.CreateDirectory(directoryPath);
+                //}
 
                 #region 无效，读取文件的时候会乱码
                 //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(content);
@@ -160,10 +160,21 @@ namespace GenerateHtml
                 //} 
                 #endregion
 
-                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(fullPath, false, Encoding.UTF8))
+                #region 无效，本地路径发布，不能实现远程发布
+                //using (System.IO.StreamWriter sw = new System.IO.StreamWriter(fullPath, false, Encoding.UTF8))
+                //{
+                //    sw.Write(content);
+                //} 
+                #endregion
+
+
+                List<IPublishPageService> channelList = Entity.CreateChannelList<IPublishPageService>(SiteEnum.SiteService.PublishPageService);
+                foreach (IPublishPageService channel in channelList)
                 {
-                    sw.Write(content);
+                    error += string.Format("{0};", channel.PublishPage(generatePath, content));
+                    (channel as IDisposable).Dispose();
                 }
+
                 return true;
             }
             catch (Exception ex)

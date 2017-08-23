@@ -27,7 +27,12 @@ namespace Site.Common
             /// <summary>
             /// 上传服务
             /// </summary>
-            UploadService = 3
+            UploadService = 3,
+
+            /// <summary>
+            /// 发布页面服务
+            /// </summary>
+            PublishPageService = 4
 
 
         }

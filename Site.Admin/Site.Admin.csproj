@@ -800,6 +800,10 @@
       <Project>{d3ac3e16-d643-4f46-8acc-8f29beb4a02b}</Project>
       <Name>Site.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Site.GenerateHtml\Site.GenerateHtml.csproj">
+      <Project>{ffe1ecbd-6594-4a99-af44-be79f42fc088}</Project>
+      <Name>Site.GenerateHtml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Site.Service.SiteService\Site.Service.SiteService.csproj">
       <Project>{1dafd112-e7b1-44ee-a2ee-97c3407233a6}</Project>
       <Name>Site.Service.SiteService</Name>

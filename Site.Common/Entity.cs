@@ -93,6 +93,67 @@ namespace Site.Common
             return channelFac.CreateChannel();
 
         }
+
+        /// <summary>
+        /// 创建 同名的多个 wcf通道 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="serviceName"></param>
+        /// <returns></returns>
+        public static List<T> CreateChannelList<T>(SiteEnum.SiteService serviceName)
+        {
+            List<T> list = new List<T>();
+
+            string mapPath = System.Web.HttpContext.Current.Server.MapPath("~/config/service.config");
+            XmlDocument doc = new XmlDocument();
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.IgnoreComments = true;//忽略文档里面的注释
+            XmlReader reader = XmlReader.Create(mapPath, settings);
+
+            doc.Load(reader);
+            reader.Dispose();
+
+            XmlNodeList nodeList = doc.DocumentElement.ChildNodes;
+            List<XmlNode> node = new List<XmlNode>();
+            for (int i = 0; i < nodeList.Count; i++)
+            {
+                if (nodeList[i].FirstChild.InnerText == serviceName.ToString())
+                {
+                    node.Add(nodeList.Item(i));
+                }
+            }
+
+            string service = string.Empty;
+            string serviceUrl = string.Empty;
+            string securityMode = string.Empty;
+            string servicespace = string.Empty;
+            foreach (XmlNode item in node)
+            {
+                service = item.SelectSingleNode("serviceName").InnerText;
+                serviceUrl = item.SelectSingleNode("serviceUrl").InnerText;
+                securityMode = item.SelectSingleNode("SecurityMode").InnerText;
+                servicespace = item.SelectSingleNode("servicespace").InnerText;
+
+                ChannelFactory<T> channelFac = new ChannelFactory<T>(CreateBindding(service, SecurityMode.None, servicespace), CreateEndpoint(serviceUrl));
+
+                //查看是否有 数据契约
+                foreach (OperationDescription op in channelFac.Endpoint.Contract.Operations)
+                {
+                    DataContractSerializerOperationBehavior dataContractBehavior = op.Behaviors.Find<DataContractSerializerOperationBehavior>() as DataContractSerializerOperationBehavior;
+                    if (dataContractBehavior != null)
+                    {
+                        //制定数据契约 序列化的数量
+                        dataContractBehavior.MaxItemsInObjectGraph = 0x100000;
+                    }
+                }
+
+                list.Add(channelFac.CreateChannel());
+            }
+
+            return list;
+        }
+
+
         #endregion
 
         //缓存锁
