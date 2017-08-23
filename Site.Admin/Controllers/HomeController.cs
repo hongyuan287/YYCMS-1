@@ -37,7 +37,7 @@ namespace Site.Admin.Controllers
             if (info != null)
             {
                 string md5Pwd = Entity.Str2Md5(obj.u_password);
-                if (Entity.Str2Md5(obj.u_password) == info.u_password)
+                if (md5Pwd == info.u_password)
                 {
                     if (remenber == "1")
                     {
