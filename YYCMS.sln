@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Site.SiteModel", "Site.Site
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Site.LuceneCreateService", "Site.LuceneCreateService\Site.LuceneCreateService.csproj", "{5BCB1343-4796-4355-9E36-323EB918C611}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Site.Main", "Site.Main\Site.Main.csproj", "{1C5998AF-C258-4AA0-8E8B-4D846840582F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -133,6 +135,10 @@ Global
 		{5BCB1343-4796-4355-9E36-323EB918C611}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BCB1343-4796-4355-9E36-323EB918C611}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BCB1343-4796-4355-9E36-323EB918C611}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C5998AF-C258-4AA0-8E8B-4D846840582F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C5998AF-C258-4AA0-8E8B-4D846840582F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C5998AF-C258-4AA0-8E8B-4D846840582F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C5998AF-C258-4AA0-8E8B-4D846840582F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -156,6 +162,7 @@ Global
 		{45C856C2-63B5-45C2-825C-4D9BB33302FB} = {7FA2EBA0-44C4-4207-92D9-E2C046659229}
 		{229D2B95-7B9C-462D-B0F7-377B8635EC24} = {8CABB3ED-7B29-4F50-A6CB-20E535C9CB89}
 		{5BCB1343-4796-4355-9E36-323EB918C611} = {D3DA5617-54D7-457A-B4DF-936BA5ED759B}
+		{1C5998AF-C258-4AA0-8E8B-4D846840582F} = {E9750571-DC63-4C79-8317-D091BCF38B5A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
