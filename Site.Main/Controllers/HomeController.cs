@@ -22,5 +22,10 @@ namespace Site.Main.Controllers
         {
             return View();
         }
+
+        public ActionResult Index()
+        {
+            return View();
+        }
     }
 }

@@ -8,6 +8,7 @@
 <table class="tableClass">
     <tr>
         <th style="width:80px;">序号</th>
+        <th style="width:80px;">分类ID</th>
         <th style="width:80px;">路径</th>
         <th>表索引</th>
         <th style="text-align: left">名称</th>
@@ -23,6 +24,7 @@
         {
             <tr>
                 <td style="width:80px;">@i</td>
+                <td style="width:80px;">@item.c_id</td>
                 <td style="width:80px;">@item.c_path</td>
                 <td>@item.c_tableId</td>
                 <td style="text-align: left">
@@ -54,23 +56,23 @@
                     }
                     <a href="javascript:void(0);" class="op" onclick="btnDelete('@item.c_gid')">删</a>
                     @{
-                        if (item.c_path.Length==2)
+                        if (item.c_path.Length == 2)
                         {
                             <a href="javascript:void(0);" class="op" onclick="btnSubEdit('','@item.c_tableId')">+子分类</a>
                         }
                     }
-                    
+
                 </td>
             </tr>
-                    i++;
-        }
-    }
-    else
-    {
-        <tr>
-            <td style="text-align: center" colspan="8">暂无任何数据</td>
-        </tr>
-    }
+                                i++;
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td style="text-align: center" colspan="8">暂无任何数据</td>
+                            </tr>
+                        }
 </table>
 <div id="pageBar" class="page"></div>
 

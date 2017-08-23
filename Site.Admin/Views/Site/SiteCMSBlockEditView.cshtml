@@ -43,7 +43,8 @@
             b_path: $("#b_path").val(),
             p_gid: '@p_gid',
             siteName: '@siteName',
-            b_gid: $("#b_gid").val()
+            b_gid: $("#b_gid").val(),
+            b_img_size: $("#b_img_size").val()
             };
 
             $.ajax({
@@ -85,6 +86,13 @@
             <td><span class="red">*</span>区块名称：</td>
             <td>
                 <input name="b_name" id="b_name" type="text" style="width: 240px;" value="@info.b_name" />
+            </td>
+        </tr>
+        <tr>
+            <td><span class="red">*</span>图片尺寸：</td>
+            <td>
+                <input name="b_img_size" id="b_img_size" type="text" style="width: 240px;" value="@info.b_img_size" />
+                w
             </td>
         </tr>
     </table>

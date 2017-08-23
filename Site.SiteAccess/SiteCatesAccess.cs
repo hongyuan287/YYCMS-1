@@ -342,6 +342,7 @@ namespace Site.SiteAccess
             db.AddInParameter(dbCmd, "@b_p_gid", DbType.String, obj.b_p_gid);
             db.AddInParameter(dbCmd, "@b_path", DbType.String, obj.b_path);
             db.AddInParameter(dbCmd, "@b_name", DbType.String, obj.b_name);
+            db.AddInParameter(dbCmd, "@b_img_size", DbType.String, obj.b_img_size);
             db.AddInParameter(dbCmd, "@b_createUser", DbType.String, obj.b_createUser);
             db.AddInParameter(dbCmd, "@b_createTime", DbType.String, obj.b_createTime);
             try
@@ -378,10 +379,12 @@ namespace Site.SiteAccess
         public int Site_CMSBlock_UpdateByb_gid(Site_CMSBlock obj)
         {
             DbCommand dbCmd = db.GetStoredProcCommand("Proc_Site_CMSBlock_UpdateByb_gid");
+            db.AddInParameter(dbCmd, "@b_id", DbType.Int32, obj.b_id);
             db.AddInParameter(dbCmd, "@b_gid", DbType.String, obj.b_gid);
             db.AddInParameter(dbCmd, "@b_p_gid", DbType.String, obj.b_p_gid);
             db.AddInParameter(dbCmd, "@b_path", DbType.String, obj.b_path);
             db.AddInParameter(dbCmd, "@b_name", DbType.String, obj.b_name);
+            db.AddInParameter(dbCmd, "@b_img_size", DbType.String, obj.b_img_size);
             db.AddInParameter(dbCmd, "@b_createUser", DbType.String, obj.b_createUser);
             db.AddInParameter(dbCmd, "@b_createTime", DbType.String, obj.b_createTime);
             try
@@ -522,6 +525,7 @@ namespace Site.SiteAccess
             db.AddInParameter(dbCmd, "@i_status", DbType.Int32, obj.i_status);
             db.AddInParameter(dbCmd, "@i_createUser", DbType.String, obj.i_createUser);
             db.AddInParameter(dbCmd, "@i_createTime", DbType.String, obj.i_createTime);
+
             try
             {
                 int returnValue = db.ExecuteNonQuery(dbCmd);

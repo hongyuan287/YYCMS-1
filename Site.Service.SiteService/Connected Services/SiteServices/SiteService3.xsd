@@ -47,6 +47,7 @@
       <xs:element minOccurs="0" name="b_createUser" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="b_gid" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="b_id" type="xs:int" />
+      <xs:element minOccurs="0" name="b_img_size" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="b_name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="b_p_gid" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="b_path" nillable="true" type="xs:string" />

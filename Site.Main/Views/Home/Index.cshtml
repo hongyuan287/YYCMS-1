@@ -1,356 +1,302 @@
-﻿
+﻿@{
+    ViewBag.Title = "宇扬网_首页";
+    ViewBag.keywords = "宇扬";
+    ViewBag.description = "View";
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>首页</title>
-        <meta name="keywords" content="" />
-        <meta name="description" content="" />
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-        <script src="/Scripts/jquery-1.10.2.js"></script>
-        <link href="/Content/SiteIndex.css" rel="stylesheet" />
-        <link href="/Content/Common.css" rel="stylesheet" />
-    </head>
-    <body>
-        <!--导航条 start-->
-        <div class="head_nav">
-            <ul class="head_nav_li">
-                <li>首页</li>
-                <li>新闻</li>
-                <li class="cur">趣事</li>
-                <li>美女</li>
-                <li>生活</li>
+    <div class="content_left">
+        <!--轮播 start-->
+        <div class="img_lb" id="scroll_lb">
+                <div>
+                    <a href="#" title="贾跃亭把一切给了公司">
+                        <img src="http://img.jsonyang.com/2017/08/14/b1f03e2c-ea31-41_700x10000x1.jpg" />
+                        <div class="img_title">
+                            <span>贾跃亭把一切给了公司</span>
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#" title="川西长途试力帆X80">
+                        <img src="http://img.jsonyang.com/2017/08/14/43785560-91c4-44_700x10000x1.jpg" />
+                        <div class="img_title">
+                            <span>川西长途试力帆X80</span>
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#" title="英国女王计划95岁退休">
+                        <img src="http://img.jsonyang.com/2017/08/14/e1f5424b-b2b2-44_700x10000x1.jpg" />
+                        <div class="img_title">
+                            <span>英国女王计划95岁退休</span>
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#" title="富豪殴打区委书记真相">
+                        <img src="http://img.jsonyang.com/2017/08/18/66f118cf-ba99-43_700x10000x1.jpg" />
+                        <div class="img_title">
+                            <span>富豪殴打区委书记真相</span>
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#" title="习近平带领我们走过的这不平凡五年">
+                        <img src="http://img.jsonyang.com/2017/08/14/5ee9ead9-26bb-4a_700x10000x1.jpg" />
+                        <div class="img_title">
+                            <span>习近平带领我们走过的这不平凡五年</span>
+                        </div>
+                    </a>
+                </div>
+            
+        </div>
+        <script>
+                $(function () {
+                    var length = $("#scroll_lb").children().length;
+                    var max = 700 * (length - 1);
+                    scrollerImage(max);
+                });
+
+                function scrollerImage(max) {
+                    setTimeout(function () {
+                        var left = 0;
+                        var leftPx = $("#scroll_lb").css("left");
+                        left = parseInt(leftPx.replace("px", ""));
+                        if (left == -max) {
+                            left = 0;
+                        } else {
+                            left = left - 700;
+                        }
+                        $("#scroll_lb").animate({ left: left + "px" }, 1000, function () {
+                            scrollerImage(max);
+                        });
+                    }, 2500);
+                }
+
+
+        </script>
+        <!--轮播 end-->
+        <!--分类块1-->
+        <div class="content_cate">
+            <div class="cate_block">
+                <span>新闻</span>
+                <a href="#" class="more">更多>></a>
+            </div>
+            <!--图-->
+            <div class="content_cate_hot">
+                <img src="/Content/image/3.jpg" />
+                <div>
+                    <a href="#" title=""><span>美国引进垃圾大法师打发地方</span></a>
+                </div>
+            </div>
+            <!--文-->
+            <div class="content_cate_hot_list">
+                <ul>
+                    <li><a href="#">新西兰历险记新西记的风格风</a></li>
+                    <li><a href="#">澳洲羊驼</a></li>
+                    <li><a href="#">大龙虾能不能吃</a></li>
+                    <li><a href="#">集散地发货计划</a></li>
+                    <li><a href="#">新西兰历险记新西记</a></li>
+                    <li><a href="#">大龙虾能不能吃</a></li>
+                    <li><a href="#">集散地发货计划</a></li>
+                    <li><a href="#">新西兰历险记水电费</a></li>
+                    <li><a href="#">新西兰历险记新西记</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content_cate l3">
+            <div class="cate_block">
+                <span>趣事</span>
+                <a href="#" class="more">更多>></a>
+            </div>
+            <!--图-->
+            <div class="content_cate_hot">
+                <img src="/Content/image/3.jpg" />
+                <div>
+                    <a href="#" title=""><span>美国引进垃圾大法师打发地方</span></a>
+                </div>
+            </div>
+            <!--文-->
+            <div class="content_cate_hot_list">
+                <ul>
+                    <li><a href="#">新西兰历险记新西记的风格风</a></li>
+                    <li><a href="#">澳洲羊驼</a></li>
+                    <li><a href="#">大龙虾能不能吃</a></li>
+                    <li><a href="#">集散地发货计划</a></li>
+                    <li><a href="#">新西兰历险记新西记</a></li>
+                    <li><a href="#">大龙虾能不能吃</a></li>
+                    <li><a href="#">集散地发货计划</a></li>
+                    <li><a href="#">新西兰历险记水电费</a></li>
+                    <li><a href="#">新西兰历险记新西记</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content_cate l3">
+            <div class="cate_block">
+                <span>美女</span>
+                <a href="#" class="more">更多>></a>
+            </div>
+            <!--图-->
+            <div class="content_cate_hot">
+                <img src="/Content/image/3.jpg" />
+                <div>
+                    <a href="#" title=""><span>美国引进垃圾大法师打发地方</span></a>
+                </div>
+            </div>
+            <!--文-->
+            <div class="content_cate_hot_list">
+                <ul>
+                    <li><a href="#">新西兰历险记新西记的风格风</a></li>
+                    <li><a href="#">澳洲羊驼</a></li>
+                    <li><a href="#">大龙虾能不能吃</a></li>
+                    <li><a href="#">集散地发货计划</a></li>
+                    <li><a href="#">新西兰历险记新西记</a></li>
+                    <li><a href="#">大龙虾能不能吃</a></li>
+                    <li><a href="#">集散地发货计划</a></li>
+                    <li><a href="#">新西兰历险记水电费</a></li>
+                    <li><a href="#">新西兰历险记新西记</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <!--分类块2-->
+        <div class="content_cate">
+            <div class="cate_block">
+                <span>新闻</span>
+                <a href="#" class="more">更多>></a>
+            </div>
+            <!--图-->
+            <div class="content_cate_hot">
+                <img src="/Content/image/3.jpg" />
+                <div>
+                    <a href="#" title=""><span>美国引进垃圾大法师打发地方</span></a>
+                </div>
+            </div>
+            <!--文-->
+            <div class="content_cate_hot_list">
+                <ul>
+                    <li><a href="#">新西兰历险记新西记的风格风</a></li>
+                    <li><a href="#">澳洲羊驼</a></li>
+                    <li><a href="#">大龙虾能不能吃</a></li>
+                    <li><a href="#">集散地发货计划</a></li>
+                    <li><a href="#">新西兰历险记新西记</a></li>
+                    <li><a href="#">大龙虾能不能吃</a></li>
+                    <li><a href="#">集散地发货计划</a></li>
+                    <li><a href="#">新西兰历险记水电费</a></li>
+                    <li><a href="#">新西兰历险记新西记</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content_cate l3">
+            <div class="cate_block">
+                <span>趣事</span>
+                <a href="#" class="more">更多>></a>
+            </div>
+            <!--图-->
+            <div class="content_cate_hot">
+                <img src="/Content/image/3.jpg" />
+                <div>
+                    <a href="#" title=""><span>美国引进垃圾大法师打发地方</span></a>
+                </div>
+            </div>
+            <!--文-->
+            <div class="content_cate_hot_list">
+                <ul>
+                    <li><a href="#">新西兰历险记新西记的风格风</a></li>
+                    <li><a href="#">澳洲羊驼</a></li>
+                    <li><a href="#">大龙虾能不能吃</a></li>
+                    <li><a href="#">集散地发货计划</a></li>
+                    <li><a href="#">新西兰历险记新西记</a></li>
+                    <li><a href="#">大龙虾能不能吃</a></li>
+                    <li><a href="#">集散地发货计划</a></li>
+                    <li><a href="#">新西兰历险记水电费</a></li>
+                    <li><a href="#">新西兰历险记新西记</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content_cate l3">
+            <div class="cate_block">
+                <span>美女</span>
+                <a href="#" class="more">更多>></a>
+            </div>
+            <!--图-->
+            <div class="content_cate_hot">
+                <img src="/Content/image/3.jpg" />
+                <div>
+                    <a href="#" title=""><span>美国引进垃圾大法师打发地方</span></a>
+                </div>
+            </div>
+            <!--文-->
+            <div class="content_cate_hot_list">
+                <ul>
+                    <li><a href="#">新西兰历险记新西记的风格风</a></li>
+                    <li><a href="#">澳洲羊驼</a></li>
+                    <li><a href="#">大龙虾能不能吃</a></li>
+                    <li><a href="#">集散地发货计划</a></li>
+                    <li><a href="#">新西兰历险记新西记</a></li>
+                    <li><a href="#">大龙虾能不能吃</a></li>
+                    <li><a href="#">集散地发货计划</a></li>
+                    <li><a href="#">新西兰历险记水电费</a></li>
+                    <li><a href="#">新西兰历险记新西记</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="content_right">
+        <!--右侧热点-->
+        <div class="content_list_hot">
+            <ul>
+                <li><a href="#">集散地发货计划</a></li>
+                <li><a href="#">集散地发货计划</a></li>
+                <li><a href="#">集散地发货计划</a></li>
+                <li><a href="#">集散地发货计划</a></li>
+                <li><a href="#">集散地发货计划</a></li>
+                <li><a href="#">集散地发货计划</a></li>
+                <li><a href="#">集散地发货计划</a></li>
+                <li><a href="#">集散地发货计划</a></li>
+                <li><a href="#">集散地发货计划</a></li>
             </ul>
         </div>
-        <!--导航条 end-->
-        <!--搜索框 start-->
-        <div class="head_search">
-            <div class="head_search_input">
-                <input type="text" name="name" placeholder="请输入关键字搜索" value="" />
-            </div>
-            <div class="head_search_btn">
-                <a href="javascript:void(0);">搜索</a>
-            </div>
+        <!--右侧图文-->
+        <div class="content_block">
+            <a href="#" title="">
+                <div class="content_img_hot">
+                    <img src="/Content/image/3.jpg" />
+                    <div>
+                        <span>美国引进垃圾大法师打发地方</span>
+                        <p>案说法是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的</p>
+                    </div>
+                </div>
+            </a>
+            <a href="#" title="">
+                <div class="content_img_hot">
+                    <img src="/Content/image/3.jpg" />
+                    <div>
+                        <span>美国引进垃圾大法师打发地方</span>
+                        <p>案说法是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的</p>
+                    </div>
+                </div>
+            </a>
+            <a href="#" title="">
+                <div class="content_img_hot">
+                    <img src="/Content/image/3.jpg" />
+                    <div>
+                        <span>美国引进垃圾大法师打发地方</span>
+                        <p>案说法是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的</p>
+                    </div>
+                </div>
+            </a>
         </div>
-        <!--搜索框 end-->
-        <!--内容 start-->
-        <div class="content">
-            <div class="content_left">
-                <!--轮播 start-->
-                <div class="img_lb" id="scroll_lb">
-                    <div>
-                        <a href="#" title="">
-                            <img src="/Content/image/1.jpg" />
-                            <div class="img_title">
-                                <span>图片1描素信息</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#" title="">
-                            <img src="/Content/image/2.jpg" />
-                            <div class="img_title">
-                                <span>图片2描素信息</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#" title="">
-                            <img src="/Content/image/3.jpg" />
-                            <div class="img_title">
-                                <span>图片3描素信息</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#" title="">
-                            <img src="/Content/image/4.jpg" />
-                            <div class="img_title">
-                                <span>图片4描素信息</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <script>
-                    $(function () {
-                        var length = $("#scroll_lb").children().length;
-                        var max = 700 * (length - 1);
-                        scrollerImage(max);
-                    });
-
-                    function scrollerImage(max) {
-                        setTimeout(function () {
-                            var left = 0;
-                            var leftPx = $("#scroll_lb").css("left");
-                            left = parseInt(leftPx.replace("px", ""));
-                            if (left == -max) {
-                                left = 0;
-                            } else {
-                                left = left - 700;
-                            }
-                            $("#scroll_lb").animate({ left: left + "px" }, 1000, function () {
-                                scrollerImage(max);
-                            });
-                        }, 2500);
-                    }
-
-
-                </script>
-                <!--轮播 end-->
-                <!--分类块1-->
-                <div class="content_cate">
-                    <div class="cate_block">
-                        <span>新闻</span>
-                        <a href="#" class="more">更多>></a>
-                    </div>
-                    <!--图-->
-                    <div class="content_cate_hot">
-                        <img src="/Content/image/3.jpg" />
-                        <div>
-                            <a href="#" title=""><span>美国引进垃圾大法师打发地方</span></a>
-                        </div>
-                    </div>
-                    <!--文-->
-                    <div class="content_cate_hot_list">
-                        <ul>
-                            <li><a href="#">新西兰历险记新西记的风格风</a></li>
-                            <li><a href="#">澳洲羊驼</a></li>
-                            <li><a href="#">大龙虾能不能吃</a></li>
-                            <li><a href="#">集散地发货计划</a></li>
-                            <li><a href="#">新西兰历险记新西记</a></li>
-                            <li><a href="#">大龙虾能不能吃</a></li>
-                            <li><a href="#">集散地发货计划</a></li>
-                            <li><a href="#">新西兰历险记水电费</a></li>
-                            <li><a href="#">新西兰历险记新西记</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="content_cate l3">
-                    <div class="cate_block">
-                        <span>趣事</span>
-                        <a href="#" class="more">更多>></a>
-                    </div>
-                    <!--图-->
-                    <div class="content_cate_hot">
-                        <img src="/Content/image/3.jpg" />
-                        <div>
-                            <a href="#" title=""><span>美国引进垃圾大法师打发地方</span></a>
-                        </div>
-                    </div>
-                    <!--文-->
-                    <div class="content_cate_hot_list">
-                        <ul>
-                            <li><a href="#">新西兰历险记新西记的风格风</a></li>
-                            <li><a href="#">澳洲羊驼</a></li>
-                            <li><a href="#">大龙虾能不能吃</a></li>
-                            <li><a href="#">集散地发货计划</a></li>
-                            <li><a href="#">新西兰历险记新西记</a></li>
-                            <li><a href="#">大龙虾能不能吃</a></li>
-                            <li><a href="#">集散地发货计划</a></li>
-                            <li><a href="#">新西兰历险记水电费</a></li>
-                            <li><a href="#">新西兰历险记新西记</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="content_cate l3">
-                    <div class="cate_block">
-                        <span>美女</span>
-                        <a href="#" class="more">更多>></a>
-                    </div>
-                    <!--图-->
-                    <div class="content_cate_hot">
-                        <img src="/Content/image/3.jpg" />
-                        <div>
-                            <a href="#" title=""><span>美国引进垃圾大法师打发地方</span></a>
-                        </div>
-                    </div>
-                    <!--文-->
-                    <div class="content_cate_hot_list">
-                        <ul>
-                            <li><a href="#">新西兰历险记新西记的风格风</a></li>
-                            <li><a href="#">澳洲羊驼</a></li>
-                            <li><a href="#">大龙虾能不能吃</a></li>
-                            <li><a href="#">集散地发货计划</a></li>
-                            <li><a href="#">新西兰历险记新西记</a></li>
-                            <li><a href="#">大龙虾能不能吃</a></li>
-                            <li><a href="#">集散地发货计划</a></li>
-                            <li><a href="#">新西兰历险记水电费</a></li>
-                            <li><a href="#">新西兰历险记新西记</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="clear"></div>
-                <!--分类块2-->
-                <div class="content_cate">
-                    <div class="cate_block">
-                        <span>新闻</span>
-                        <a href="#" class="more">更多>></a>
-                    </div>
-                    <!--图-->
-                    <div class="content_cate_hot">
-                        <img src="/Content/image/3.jpg" />
-                        <div>
-                            <a href="#" title=""><span>美国引进垃圾大法师打发地方</span></a>
-                        </div>
-                    </div>
-                    <!--文-->
-                    <div class="content_cate_hot_list">
-                        <ul>
-                            <li><a href="#">新西兰历险记新西记的风格风</a></li>
-                            <li><a href="#">澳洲羊驼</a></li>
-                            <li><a href="#">大龙虾能不能吃</a></li>
-                            <li><a href="#">集散地发货计划</a></li>
-                            <li><a href="#">新西兰历险记新西记</a></li>
-                            <li><a href="#">大龙虾能不能吃</a></li>
-                            <li><a href="#">集散地发货计划</a></li>
-                            <li><a href="#">新西兰历险记水电费</a></li>
-                            <li><a href="#">新西兰历险记新西记</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="content_cate l3">
-                    <div class="cate_block">
-                        <span>趣事</span>
-                        <a href="#" class="more">更多>></a>
-                    </div>
-                    <!--图-->
-                    <div class="content_cate_hot">
-                        <img src="/Content/image/3.jpg" />
-                        <div>
-                            <a href="#" title=""><span>美国引进垃圾大法师打发地方</span></a>
-                        </div>
-                    </div>
-                    <!--文-->
-                    <div class="content_cate_hot_list">
-                        <ul>
-                            <li><a href="#">新西兰历险记新西记的风格风</a></li>
-                            <li><a href="#">澳洲羊驼</a></li>
-                            <li><a href="#">大龙虾能不能吃</a></li>
-                            <li><a href="#">集散地发货计划</a></li>
-                            <li><a href="#">新西兰历险记新西记</a></li>
-                            <li><a href="#">大龙虾能不能吃</a></li>
-                            <li><a href="#">集散地发货计划</a></li>
-                            <li><a href="#">新西兰历险记水电费</a></li>
-                            <li><a href="#">新西兰历险记新西记</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="content_cate l3">
-                    <div class="cate_block">
-                        <span>美女</span>
-                        <a href="#" class="more">更多>></a>
-                    </div>
-                    <!--图-->
-                    <div class="content_cate_hot">
-                        <img src="/Content/image/3.jpg" />
-                        <div>
-                            <a href="#" title=""><span>美国引进垃圾大法师打发地方</span></a>
-                        </div>
-                    </div>
-                    <!--文-->
-                    <div class="content_cate_hot_list">
-                        <ul>
-                            <li><a href="#">新西兰历险记新西记的风格风</a></li>
-                            <li><a href="#">澳洲羊驼</a></li>
-                            <li><a href="#">大龙虾能不能吃</a></li>
-                            <li><a href="#">集散地发货计划</a></li>
-                            <li><a href="#">新西兰历险记新西记</a></li>
-                            <li><a href="#">大龙虾能不能吃</a></li>
-                            <li><a href="#">集散地发货计划</a></li>
-                            <li><a href="#">新西兰历险记水电费</a></li>
-                            <li><a href="#">新西兰历险记新西记</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-
-            <div class="content_right">
-                <!--右侧热点-->
-                <div class="content_list_hot">
-                    <ul>
-                        <li><a href="#">集散地发货计划</a></li>
-                        <li><a href="#">集散地发货计划</a></li>
-                        <li><a href="#">集散地发货计划</a></li>
-                        <li><a href="#">集散地发货计划</a></li>
-                        <li><a href="#">集散地发货计划</a></li>
-                        <li><a href="#">集散地发货计划</a></li>
-                        <li><a href="#">集散地发货计划</a></li>
-                        <li><a href="#">集散地发货计划</a></li>
-                        <li><a href="#">集散地发货计划</a></li>
-                    </ul>
-                </div>
-                <!--右侧图文-->
-                <div class="content_block">
-                    <a href="#" title="">
-                        <div class="content_img_hot">
-                            <img src="/Content/image/3.jpg" />
-                            <div>
-                                <span>美国引进垃圾大法师打发地方</span>
-                                <p>案说法是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" title="">
-                        <div class="content_img_hot">
-                            <img src="/Content/image/3.jpg" />
-                            <div>
-                                <span>美国引进垃圾大法师打发地方</span>
-                                <p>案说法是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" title="">
-                        <div class="content_img_hot">
-                            <img src="/Content/image/3.jpg" />
-                            <div>
-                                <span>美国引进垃圾大法师打发地方</span>
-                                <p>案说法是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="clear"></div>
-                <!--热门阅读排行-->
-                <div class="content_hot">
-
-                </div>
-
-                <!--热门阅读排行-->
-                <div class="content_hot">
-
-                </div>
-
-
-            </div>
-
-        </div>
-        <!--内容 end-->
         <div class="clear"></div>
-        <!--尾部 start-->
-        <div class="foot">
-            <div>
-                <p>
-                    <a href="#">关于公司</a>
-                    <span>|</span>
-                    <a href="#">联系我们</a>
-                    <span>|</span>
-                    <a href="#">欢迎投稿</a>
-                    <span>|</span>
-                    <a href="#">商务联系</a>
-                    <span>|</span>
-                    <a href="#">加入我们</a>
-                    <span>|</span>
-                    <a href="#">公司地址</a>
-                </p>
-                <p>@CopyRight 2017-2018 寰宇公司版权所有 </p>
-            </div>
+        <!--热门阅读排行-->
+        <div class="content_hot">
+
         </div>
-        <!--尾部 end-->
 
+        <!--热门阅读排行-->
+        <div class="content_hot">
 
-    </body>
-</html>
+        </div>
+    </div>

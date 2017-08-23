@@ -397,6 +397,9 @@ namespace Site.Service.SiteService.SiteServices {
         private int b_idField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string b_img_sizeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string b_nameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -463,6 +466,19 @@ namespace Site.Service.SiteService.SiteServices {
                 if ((this.b_idField.Equals(value) != true)) {
                     this.b_idField = value;
                     this.RaisePropertyChanged("b_id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string b_img_size {
+            get {
+                return this.b_img_sizeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.b_img_sizeField, value) != true)) {
+                    this.b_img_sizeField = value;
+                    this.RaisePropertyChanged("b_img_size");
                 }
             }
         }

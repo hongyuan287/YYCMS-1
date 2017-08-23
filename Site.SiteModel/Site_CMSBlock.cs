@@ -83,6 +83,21 @@ namespace Site.SiteModel
         }
         #endregion
 
+        #region b_img_size
+        private string _b_img_size;
+        public string b_img_size
+        {
+            get
+            {
+                return this._b_img_size;
+            }
+            set
+            {
+                this._b_img_size = value;
+            }
+        }
+        #endregion
+
         #region b_createUser
         private string _b_createUser;
         public string b_createUser

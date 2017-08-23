@@ -1,40 +1,65 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="@ViewBag.keywords" />
+    <meta name="description" content="@ViewBag.description" />
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <link href="~/Content/SiteIndex.css" rel="stylesheet" />
+    <link href="~/Content/Common.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
-            </div>
+
+    <!--导航条 start-->
+    <div class="head_nav">
+        <ul class="head_nav_li">
+            <li>首页</li>
+            <li>新闻</li>
+            <li class="cur">趣事</li>
+            <li>美女</li>
+            <li>生活</li>
+        </ul>
+    </div>
+    <!--导航条 end-->
+    <!--搜索框 start-->
+    <div class="head_search">
+        <div class="head_search_input">
+            <input type="text" name="name" placeholder="请输入关键字搜索" value="" />
+        </div>
+        <div class="head_search_btn">
+            <a href="javascript:void(0);">搜索</a>
         </div>
     </div>
-
-    <div class="container body-content">
+    <!--搜索框 end-->
+    <!--内容 start-->
+    <div class="content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
-
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!--内容 end-->
+    <div class="clear"></div>
+    <!--尾部 start-->
+    <div class="foot">
+        <div>
+            <p>
+                <a href="#">关于公司</a>
+                <span>|</span>
+                <a href="#">联系我们</a>
+                <span>|</span>
+                <a href="#">欢迎投稿</a>
+                <span>|</span>
+                <a href="#">商务联系</a>
+                <span>|</span>
+                <a href="#">加入我们</a>
+                <span>|</span>
+                <a href="#">公司地址</a>
+            </p>
+            <p>@@CopyRight 2017-2018 寰宇公司版权所有 </p>
+        </div>
+    </div>
+    <!--尾部 end-->
 </body>
 </html>

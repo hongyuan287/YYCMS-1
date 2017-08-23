@@ -355,6 +355,7 @@ namespace Site.Admin.Controllers
             string b_path = Request["b_path"] ?? string.Empty;
             string p_gid = Request["p_gid"] ?? string.Empty;
             string b_gid = Request["b_gid"] ?? string.Empty;
+            string b_img_size = Request["b_img_size"] ?? string.Empty;
             int siteName = Request["siteName"].ToInt32(0);
 
             Site_CMSBlock info = null;
@@ -374,6 +375,7 @@ namespace Site.Admin.Controllers
 
             info.b_name = b_name;
             info.b_path = b_path;
+            info.b_img_size = b_img_size;
 
 
             if (string.IsNullOrEmpty(b_gid))
@@ -476,6 +478,7 @@ namespace Site.Admin.Controllers
             string i_gid = Request["i_gid"] ?? string.Empty;
             string b_gid = Request["b_gid"] ?? string.Empty;
 
+
             Site_CMSItem info = null;
             if (string.IsNullOrEmpty(i_gid))
             {
@@ -497,6 +500,7 @@ namespace Site.Admin.Controllers
             info.i_title = i_title;
             info.i_subTitle = i_subTitle;
             info.i_intro = i_content;
+
 
 
             if (string.IsNullOrEmpty(i_gid))
@@ -868,6 +872,8 @@ namespace Site.Admin.Controllers
                 item.i_status = (int)SiteEnum.SiteItemStatus.待审核;
                 item.i_subTitle = content.c_sub_title;
                 item.i_title = content.c_sub_title;
+                //TODO:图片需要根据该区块设置的图片尺寸，缩放该图片
+
                 item.i_c_img_src = content.c_img_src;
 
 
