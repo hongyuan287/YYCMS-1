@@ -97,7 +97,9 @@ namespace Site.WCF.SiteService
 
         [OperationContract]
         List<Site_Content> Site_Content_SelectPage(string cloumns, int pageIndex, int pageSize, string orderBy, string where, out int rowCount);
-        
+
+        [OperationContract]
+        List<Site_Content> Site_Content_SelectPageByc_id(int cateId, int pageIndex, int pageSize);
 
         #endregion
 

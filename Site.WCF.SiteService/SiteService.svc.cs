@@ -243,6 +243,14 @@ namespace Site.WCF.SiteService
             }
         }
 
+        public List<Site_Content> Site_Content_SelectPageByc_id(int cateId, int pageIndex, int pageSize)
+        {
+            using (SiteContentAccesss access = new SiteContentAccesss())
+            {
+                return access.Site_Content_SelectPageByc_id(cateId, pageIndex, pageSize);
+            }
+        }
+
 
         #endregion
     }

@@ -28,18 +28,7 @@ namespace GenerateHtml
             Site_CMSPage info = SiteServiceClass.Site_CMSPage_SelectByp_gid(p_gid);
             string tempFilePath = info.p_tempPath;
             string generatePath = info.p_filePath;
-
-
-
-            //if (!string.IsNullOrEmpty(p_path))
-            //{
-            //    string basePath = ConfigurationManager.AppSettings[p_path];
-            //    if (string.IsNullOrEmpty(basePath))
-            //    {
-            //        return Json(new { success = false, errors = new { text = "未指定生成基地址" } }, "text/html", JsonRequestBehavior.AllowGet);
-            //    }
-            //    generatePath = generatePath.Replace("~", basePath);
-            //}
+            
 
             tempFilePath = tempFilePath.Replace("/", "\\");
             generatePath = generatePath.Replace("~", "").Replace("/", "\\");
@@ -86,7 +75,6 @@ namespace GenerateHtml
         private ActionResult GeneratePage(string tempFilePath, string generatePath, ViewDataDictionary dic, TempDataDictionary tempDic, ControllerContext context)
         {
             string fullPath = Server.MapPath(tempFilePath);
-            //string fullPath = tempFilePath;
             if (!System.IO.File.Exists(fullPath))
             {
                 return Json(new { success = false, errors = new { text = "不存在该模板文件" } }, "text/html", JsonRequestBehavior.AllowGet);
@@ -113,10 +101,7 @@ namespace GenerateHtml
         {
             string html = string.Empty;
             IView view = ViewEngines.Engines.FindPartialView(context, tempFilePath).View;
-            //if (view == null)
-            //{
-            //    view = ViewEngines.Engines.FindPartialView(context, tempFilePath).View;
-            //}
+            
             if (view == null)
             {
                 throw new Exception("没有找到分布视图");
@@ -171,7 +156,7 @@ namespace GenerateHtml
                 List<IPublishPageService> channelList = Entity.CreateChannelList<IPublishPageService>(SiteEnum.SiteService.PublishPageService);
                 foreach (IPublishPageService channel in channelList)
                 {
-                    error += string.Format("{0};", channel.PublishPage(generatePath, content));
+                    error += string.Format("{0} ", channel.PublishPage(generatePath, content));
                     (channel as IDisposable).Dispose();
                 }
 

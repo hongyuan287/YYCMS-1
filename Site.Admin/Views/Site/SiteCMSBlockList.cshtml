@@ -100,7 +100,7 @@
             mDialogUI.openWindow("/Site/SiteCMSBlockEditView?p_gid=" + p_gid + "&b_gid=" + b_gid + "&siteName=" + siteName, title, 400, 250, true);
         }
 
-        function btnEditItem(type, i_gid, b_gid) {
+        function btnEditItem(type, i_gid, b_gid,p_gid) {
             var title;
             if (type) {
                 title = "新增信息项";
@@ -108,7 +108,7 @@
             else {
                 title = "修改信息项";
             }
-            mDialogUI.openWindow("/Site/SiteCMSItemEditView?i_gid=" + i_gid + "&b_gid=" + b_gid, title, 400, 250, true);
+            mDialogUI.openWindow("/Site/SiteCMSItemEditView?i_gid=" + i_gid + "&p_gid=" + p_gid+"&b_gid=" + b_gid, title, 400, 250, true);
         }
 
         function btnDelete(b_gid) {
@@ -291,7 +291,7 @@
     </div>
     <div>
         <div style="float: left;width: 25%; border-style: none;">
-            <table  style="border-top-style:none;">
+            <table style="border-top-style:none;">
                 <tr>
                     <td style="width: 25%; border-style: none;">
                         <div style="float: right;margin-bottom:10px;">
@@ -315,6 +315,6 @@
                 </tr>
             </table>
         </div>
-       
+
     </div>
 </div>

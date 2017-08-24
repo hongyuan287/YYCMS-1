@@ -6,6 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using Site.Service.SiteService.SiteServices;
+@using Site.Admin.Common;
 @{
     Dictionary<string, List<Site_CMSItem>> dic = ViewBag.dataList;
 }
@@ -17,46 +18,14 @@
             @foreach (Site_CMSItem item in dic["10"])
             {
                 <div>
-                    <a href="#" title="@item.i_title">
+                    <a href="@SiteUntility.GetRelationDetailUrl(item.i_c_gid)" target="_blank" title="@item.i_title">
                         <img src="@item.i_c_img_src" />
                         <div class="img_title">
                             <span>@item.i_title</span>
                         </div>
                     </a>
                 </div>
-            }
-            @*<div>
-                    <a href="#" title="">
-                        <img src="~/Content/image/1.jpg" />
-                        <div class="img_title">
-                            <span>图片1描素信息</span>
-                        </div>
-                    </a>
-                </div>
-                <div>
-                    <a href="#" title="">
-                        <img src="~/Content/image/2.jpg" />
-                        <div class="img_title">
-                            <span>图片2描素信息</span>
-                        </div>
-                    </a>
-                </div>
-                <div>
-                    <a href="#" title="">
-                        <img src="~/Content/image/3.jpg" />
-                        <div class="img_title">
-                            <span>图片3描素信息</span>
-                        </div>
-                    </a>
-                </div>
-                <div>
-                    <a href="#" title="">
-                        <img src="~/Content/image/4.jpg" />
-                        <div class="img_title">
-                            <span>图片4描素信息</span>
-                        </div>
-                    </a>
-                </div>*@
+            }           
         </div>
         <script>
                 $(function () {
@@ -256,46 +225,26 @@
         <!--右侧热点-->
         <div class="content_list_hot">
             <ul>
-                <li><a href="#">集散地发货计划</a></li>
-                <li><a href="#">集散地发货计划</a></li>
-                <li><a href="#">集散地发货计划</a></li>
-                <li><a href="#">集散地发货计划</a></li>
-                <li><a href="#">集散地发货计划</a></li>
-                <li><a href="#">集散地发货计划</a></li>
-                <li><a href="#">集散地发货计划</a></li>
-                <li><a href="#">集散地发货计划</a></li>
-                <li><a href="#">集散地发货计划</a></li>
+                @for (int i = 0; i < (dic["13"].Count>9?9: dic["13"].Count); i++)
+                {
+                    <li><a href="@SiteUntility.GetRelationDetailUrl(dic["13"][i].i_c_gid)" target="_blank" title="@dic["13"][i].i_title">@(dic["13"][i].i_subTitle.Length>9?dic["13"][i].i_subTitle.Substring(0,9):dic["13"][i].i_subTitle)</a></li>
+                }
             </ul>
         </div>
         <!--右侧图文-->
         <div class="content_block">
-            <a href="#" title="">
-                <div class="content_img_hot">
-                    <img src="~/Content/image/3.jpg" />
-                    <div>
-                        <span>美国引进垃圾大法师打发地方</span>
-                        <p>案说法是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的</p>
+            @foreach (Site_CMSItem item in dic["12"])
+            {
+                <a href="@SiteUntility.GetRelationDetailUrl(item.i_c_gid)" target="_blank" title="@item.i_title">
+                    <div class="content_img_hot">
+                        <img src="@item.i_c_img_src" />
+                        <div>
+                            <span>@item.i_title</span>
+                            <p>@item.i_intro</p>
+                        </div>
                     </div>
-                </div>
-            </a>
-            <a href="#" title="">
-                <div class="content_img_hot">
-                    <img src="~/Content/image/3.jpg" />
-                    <div>
-                        <span>美国引进垃圾大法师打发地方</span>
-                        <p>案说法是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的</p>
-                    </div>
-                </div>
-            </a>
-            <a href="#" title="">
-                <div class="content_img_hot">
-                    <img src="~/Content/image/3.jpg" />
-                    <div>
-                        <span>美国引进垃圾大法师打发地方</span>
-                        <p>案说法是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的是否是否发生的</p>
-                    </div>
-                </div>
-            </a>
+                </a>
+            }
         </div>
         <div class="clear"></div>
         <!--热门阅读排行-->

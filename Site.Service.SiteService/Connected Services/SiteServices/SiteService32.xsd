@@ -405,4 +405,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="Site_Content_SelectPageByc_id">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cateId" type="xs:int" />
+        <xs:element minOccurs="0" name="pageIndex" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Site_Content_SelectPageByc_idResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Site.SiteModel" minOccurs="0" name="Site_Content_SelectPageByc_idResult" nillable="true" type="q23:ArrayOfSite_Content" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

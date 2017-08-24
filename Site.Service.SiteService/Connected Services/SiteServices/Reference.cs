@@ -1210,6 +1210,12 @@ namespace Site.Service.SiteService.SiteServices {
         // CODEGEN: 正在生成消息协定，应为该操作具有多个返回值。
         [System.ServiceModel.OperationContractAttribute(Action="http://service.jsonyang.com/ISiteService/Site_Content_SelectPage", ReplyAction="http://service.jsonyang.com/ISiteService/Site_Content_SelectPageResponse")]
         System.Threading.Tasks.Task<Site.Service.SiteService.SiteServices.Site_Content_SelectPageResponse> Site_Content_SelectPageAsync(Site.Service.SiteService.SiteServices.Site_Content_SelectPageRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://service.jsonyang.com/ISiteService/Site_Content_SelectPageByc_id", ReplyAction="http://service.jsonyang.com/ISiteService/Site_Content_SelectPageByc_idResponse")]
+        System.Collections.Generic.List<Site.Service.SiteService.SiteServices.Site_Content> Site_Content_SelectPageByc_id(int cateId, int pageIndex, int pageSize);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://service.jsonyang.com/ISiteService/Site_Content_SelectPageByc_id", ReplyAction="http://service.jsonyang.com/ISiteService/Site_Content_SelectPageByc_idResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Site.Service.SiteService.SiteServices.Site_Content>> Site_Content_SelectPageByc_idAsync(int cateId, int pageIndex, int pageSize);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1778,6 +1784,14 @@ namespace Site.Service.SiteService.SiteServices {
         
         public System.Threading.Tasks.Task<Site.Service.SiteService.SiteServices.Site_Content_SelectPageResponse> Site_Content_SelectPageAsync(Site.Service.SiteService.SiteServices.Site_Content_SelectPageRequest request) {
             return base.Channel.Site_Content_SelectPageAsync(request);
+        }
+        
+        public System.Collections.Generic.List<Site.Service.SiteService.SiteServices.Site_Content> Site_Content_SelectPageByc_id(int cateId, int pageIndex, int pageSize) {
+            return base.Channel.Site_Content_SelectPageByc_id(cateId, pageIndex, pageSize);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Site.Service.SiteService.SiteServices.Site_Content>> Site_Content_SelectPageByc_idAsync(int cateId, int pageIndex, int pageSize) {
+            return base.Channel.Site_Content_SelectPageByc_idAsync(cateId, pageIndex, pageSize);
         }
     }
 }

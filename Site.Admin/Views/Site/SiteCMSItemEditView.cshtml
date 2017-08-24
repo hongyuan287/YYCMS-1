@@ -8,6 +8,7 @@
 @{
     Site_CMSItem info = ViewData["info"] as Site_CMSItem;
     string b_gid = ViewBag.b_gid;
+    string p_gid = ViewBag.p_gid;
 }
 @section head{
 
@@ -46,7 +47,8 @@
             i_subTitle: $("#i_subTitle").val(),
             i_content: $("#i_content").val(),
             i_gid: $("#i_gid").val(),
-            b_gid:'@b_gid'
+            b_gid: '@b_gid',
+            p_gid:'@p_gid'
 
         };
 

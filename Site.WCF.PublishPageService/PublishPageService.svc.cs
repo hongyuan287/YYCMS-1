@@ -26,6 +26,16 @@ namespace Site.WCF.PublishPageService
                 {
                     result = "不存在配置的站点文件目录";
                 }
+
+                //判断是否存在最后一级视图文件夹目录，没有则创建
+                int _index = path.LastIndexOf(@"\");
+                string directoryPath = path.Substring(0, _index);
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+
+
                 using (StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8))
                 {
                     sw.Write(html);

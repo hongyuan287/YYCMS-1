@@ -294,6 +294,14 @@ namespace Site.Service.SiteService
         }
 
 
+        public static List<Site_Content> Site_Content_SelectPageByc_id(int cateId, int pageIndex, int pageSize)
+        {
+            ISiteService channel = Entity.CreateChannel<ISiteService>(SiteEnum.SiteService.SiteService);
+            var result = channel.Site_Content_SelectPageByc_id(cateId, pageIndex, pageSize);
+            (channel as IDisposable).Dispose();
+            return result;
+        }
+
         #endregion
     }
 }

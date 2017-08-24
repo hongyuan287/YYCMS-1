@@ -775,7 +775,9 @@
     <Content Include="Views\System\UserRoleList.cshtml" />
     <Content Include="Views\Template\demo_template.cshtml" />
     <Content Include="Views\Template\fang_index.cshtml" />
-    <Content Include="Views\Template\Main_Index.cshtml" />
+    <Content Include="Views\Template\Main_Index_Temp.cshtml" />
+    <Content Include="Views\Template\Main_Index_Nav_Temp.cshtml" />
+    <Content Include="Views\Template\Main_Index_Foot_Temp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

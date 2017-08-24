@@ -194,6 +194,37 @@ namespace Site.SiteAccess
         }
         #endregion
 
+        #region Proc_Site_Content_SelectPageByc_id
+        public List<Site_Content> Site_Content_SelectPageByc_id(int cateId, int pageIndex, int pageSize)
+        {
+            DbCommand dbCmd = db.GetStoredProcCommand("Proc_Site_Content_SelectPageByc_id");
+            db.AddInParameter(dbCmd, "@cateId", DbType.Int32, cateId);
+            db.AddInParameter(dbCmd, "@pageIndex", DbType.Int32, pageIndex);
+            db.AddInParameter(dbCmd, "@pageSize", DbType.Int32, pageSize);
+            List<Site_Content> list = new List<Site_Content>();
+            try
+            {
+                using (IDataReader reader = db.ExecuteReader(dbCmd))
+                {
+                    while (reader.Read())
+                    {
+                        //属性赋值
+                        Site_Content obj = this.Obj2Model<Site_Content>(reader);
+
+                        list.Add(obj);
+                    }
+                    reader.NextResult();
+                }
+
+                return list;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        #endregion
+
 
         #region Proc_Site_Content_SelectPage
         public List<Site_Content> Site_Content_SelectPage(string cloumns, int pageIndex, int pageSize, string orderBy, string where, out int rowCount)

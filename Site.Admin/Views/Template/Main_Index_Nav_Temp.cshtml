@@ -1,0 +1,25 @@
+﻿@using Site.Service.SiteService.SiteServices;
+@using Site.Common;
+@{
+    Dictionary<string, List<Site_CMSItem>> dic = ViewBag.dataList;
+}
+@@{
+    string cateId = Request.RequestContext.RouteData.Values["cateId"]==null?"":Request.RequestContext.RouteData.Values["cateId"].ToString();
+}
+
+<div class="head_nav">
+    <ul class="head_nav_li">
+        @if (dic.Count > 0)
+        {
+            foreach (Site_CMSItem item in dic["10"])
+            {
+                <li @@(cateId=="@item.i_intro"?"class=cur":"")>
+                    <a href="@SiteUntility.GetRelationCateUrl(item.i_intro)" target="_blank" title="@item.i_title">@item.i_title</a>
+                </li>
+            }
+        }
+    </ul>
+</div>
+
+
+

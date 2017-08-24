@@ -176,6 +176,12 @@
   <wsdl:message name="ISiteService_Site_Content_SelectPage_OutputMessage">
     <wsdl:part name="parameters" element="tns:Site_Content_SelectPageResponse" />
   </wsdl:message>
+  <wsdl:message name="ISiteService_Site_Content_SelectPageByc_id_InputMessage">
+    <wsdl:part name="parameters" element="tns:Site_Content_SelectPageByc_id" />
+  </wsdl:message>
+  <wsdl:message name="ISiteService_Site_Content_SelectPageByc_id_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Site_Content_SelectPageByc_idResponse" />
+  </wsdl:message>
   <wsdl:portType name="ISiteService">
     <wsdl:operation name="Site_Cates_Insert">
       <wsdl:input wsaw:Action="http://service.jsonyang.com/ISiteService/Site_Cates_Insert" message="tns:ISiteService_Site_Cates_Insert_InputMessage" />
@@ -284,6 +290,10 @@
     <wsdl:operation name="Site_Content_SelectPage">
       <wsdl:input wsaw:Action="http://service.jsonyang.com/ISiteService/Site_Content_SelectPage" message="tns:ISiteService_Site_Content_SelectPage_InputMessage" />
       <wsdl:output wsaw:Action="http://service.jsonyang.com/ISiteService/Site_Content_SelectPageResponse" message="tns:ISiteService_Site_Content_SelectPage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Site_Content_SelectPageByc_id">
+      <wsdl:input wsaw:Action="http://service.jsonyang.com/ISiteService/Site_Content_SelectPageByc_id" message="tns:ISiteService_Site_Content_SelectPageByc_id_InputMessage" />
+      <wsdl:output wsaw:Action="http://service.jsonyang.com/ISiteService/Site_Content_SelectPageByc_idResponse" message="tns:ISiteService_Site_Content_SelectPageByc_id_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="SiteBinding_ISiteService" type="tns:ISiteService">
@@ -525,6 +535,15 @@
     </wsdl:operation>
     <wsdl:operation name="Site_Content_SelectPage">
       <soap12:operation soapAction="http://service.jsonyang.com/ISiteService/Site_Content_SelectPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Site_Content_SelectPageByc_id">
+      <soap12:operation soapAction="http://service.jsonyang.com/ISiteService/Site_Content_SelectPageByc_id" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

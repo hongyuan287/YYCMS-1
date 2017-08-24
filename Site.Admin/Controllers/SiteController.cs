@@ -440,6 +440,7 @@ namespace Site.Admin.Controllers
             List<Site_CMSItem> list = SiteServiceClass.Site_CMSItem_SelectPage(search, page, pageSize, out rowCount);
             ViewData["list"] = list;
             ViewBag.b_gid = b_gid;
+            ViewBag.p_gid = p_gid;
 
             ViewData["page"] = page;
             ViewData["pageSize"] = pageSize;
@@ -452,6 +453,7 @@ namespace Site.Admin.Controllers
         {
             string i_gid = Request["i_gid"] ?? string.Empty;
             string b_gid = Request["b_gid"] ?? string.Empty;
+            string p_gid = Request["p_gid"] ?? string.Empty;
 
             Site_CMSItem info = null;
             if (string.IsNullOrEmpty(i_gid))
@@ -466,6 +468,7 @@ namespace Site.Admin.Controllers
             ViewData["window"] = Request["window"] ?? string.Empty;
             ViewData["info"] = info;
             ViewBag.b_gid = b_gid;
+            ViewBag.p_gid = p_gid;
 
             return View();
         }
@@ -477,6 +480,8 @@ namespace Site.Admin.Controllers
             string i_content = Request["i_content"] ?? string.Empty;
             string i_gid = Request["i_gid"] ?? string.Empty;
             string b_gid = Request["b_gid"] ?? string.Empty;
+            string p_gid = Request["p_gid"] ?? string.Empty;
+
 
 
             Site_CMSItem info = null;
@@ -488,9 +493,11 @@ namespace Site.Admin.Controllers
                 info.i_createTime = DateTime.Now;
                 info.i_createUser = SiteHelp.CurrentUserName;
                 info.i_b_gid = b_gid;
+                info.i_p_gid = p_gid;
                 info.i_c_gid = string.Empty;
                 info.i_c_type = string.Empty;
                 info.i_status = (int)SiteEnum.SiteItemStatus.待审核;
+                info.i_c_img_src = string.Empty;
             }
             else
             {
