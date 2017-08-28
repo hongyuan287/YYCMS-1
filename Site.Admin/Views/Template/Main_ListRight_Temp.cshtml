@@ -1,0 +1,74 @@
+﻿@using Site.Service.SiteService.SiteServices;
+@using Site.Admin.Common;
+@using Site.Common;
+@{
+    Dictionary<string, List<Site_CMSItem>> dic = ViewBag.dataList;
+}
+@if (dic.Count > 0)
+{
+    <!--广告位-->
+    <div class="ad_top_block">
+
+    </div>
+    <!--周阅读排行榜-->
+        <div class="content_whot">
+            <div class="whot_block">
+                <span>周阅读排行榜</span>
+            </div>
+
+            @{
+                string className = string.Empty;
+                for (int i = 0; i < dic["10"].GetLength<Site_CMSItem>(10); i++)
+                {
+                    if (i <= 2) { className = "hotsort"; }
+                    else if (i <= 5) { className = "secondhotsort"; }
+                    else { className = ""; }
+                    <span class="whot_item">
+                        <span class="whot @className">@(i+1)</span>
+                        <a href="@SiteUntility.GetRelationDetailUrl(dic["10"][i].i_c_gid)" target="_blank" title="@dic["10"][i].i_title">@dic["10"][i].i_title</a>
+                        <span class="whot_visit">1256</span>
+                    </span>
+                }
+            }
+        </div>
+        <!--广告位-->
+        <div class="ad_block">
+
+        </div>
+        <!--热门推荐-->
+        <div class="content_tj">
+            <div class="whot_block">
+                <span>热门推荐</span>
+            </div>
+            <ol>
+                @{
+                    for (int i = 0; i < dic["11"].GetLength<Site_CMSItem>(10); i++)
+                    {
+                        <li>
+                            <span class="whot_item">
+                                <a href="@SiteUntility.GetRelationDetailUrl(dic["11"][i].i_c_gid)" target="_blank" title="@dic["11"][i].i_title">@dic["11"][i].i_title</a>
+                                <span class="whot_visit">1256</span>
+                            </span>
+                        </li>
+                    }
+                }
+            </ol>
+        </div>
+        <!--热辣美女-->
+        <div class="right_bottom">
+            <div class="whot_block">
+                <span>热辣美女</span>
+            </div>
+            @{
+                for (int i = 0; i < dic["12"].GetLength<Site_CMSItem>(4); i++)
+                {
+                    <a href="@SiteUntility.GetRelationDetailUrl(dic["12"][i].i_c_gid)" target="_blank" title="@dic["12"][i].i_title">
+                        <div class="right_bottom_block @((i+1)%2==0?"ml10":"")">
+                            <img src="@dic["12"][i].i_c_img_src" />
+                            <div class="block_title">@dic["12"][i].i_subTitle</div>
+                        </div>
+                    </a>
+                }
+            }
+        </div>
+}

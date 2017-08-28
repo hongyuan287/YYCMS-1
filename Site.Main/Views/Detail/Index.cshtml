@@ -1,0 +1,65 @@
+﻿@{
+    Site_Content info = ViewBag.info;
+}
+@{
+    ViewBag.Title = "宇扬网_详情页_" + info.c_title;
+    ViewBag.keywords = info.c_keywords;
+    ViewBag.description = info.c_intro;
+    Layout = "~/Views/Shared/_Layout_Detail.cshtml";
+}
+@using Site.Service.SiteService.SiteServices;
+@using Site.Common;
+
+<div class="content_left">
+    <!--头部广告位 start-->
+    <div class="detial_ad_block">
+
+    </div>
+    <!--头部广告位 end-->
+    <!--面包屑导航 start-->
+    <div class="detial_nav">
+
+    </div>
+    <!--面包屑导航 end-->
+
+    <div class="content_block">
+        <div class="content_title">@info.c_title</div>
+        <div class="content_auth">
+            <span>作者：@info.c_createUserNickName</span>
+            <span>时间：@info.c_createTime.ToStringFullDate()</span>
+            <span></span>
+        </div>
+        <div>
+            @Html.Raw(info.c_content)
+        </div>
+    </div>
+
+    @*<div class="content_page">
+            <a href="#">首页</a>
+            <a href="#">上一页</a>
+            <a href="#">1</a>
+            <a href="#" class="cur">2</a>
+            <a href="#">3</a>
+            <a href="#">下一页</a>
+            <a href="#">尾页</a>
+        </div>*@
+
+    <div class="content_commont">
+        <!--高速版-->
+        <div id="SOHUCS" sid="4d5g4d7d5g47d5d7s5d774de757d5e45"></div>
+        <script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js"></script>
+        <script type="text/javascript">
+            window.changyan.api.config({
+                appid: 'cyt8rTfDN',
+                conf: 'prod_6affc491e37a8fba4859bf2ae926475a'
+            });
+        </script>
+    </div>
+</div>
+
+<div class="content_right">
+    @{
+        Html.RenderPartial("~/Views/Common/ListRight.cshtml");
+    }
+</div>
+

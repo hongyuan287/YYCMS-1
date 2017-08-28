@@ -44,6 +44,14 @@ namespace Site.Service.SiteService
             return result;
         }
 
+        public static Site_Cates Site_Cates_SelectByc_id(int c_id)
+        {
+            ISiteService channel = Entity.CreateChannel<ISiteService>(SiteEnum.SiteService.SiteService);
+            var result = channel.Site_Cates_SelectByc_id(c_id);
+            (channel as IDisposable).Dispose();
+            return result;
+        }
+
         public static List<Site_Cates> Site_Cates_SelectPage(Site_CatesSearchInfo search, int pageIndex, int pageSize, out int rowCount)
         {
             ISiteService channel = Entity.CreateChannel<ISiteService>(SiteEnum.SiteService.SiteService);
@@ -294,12 +302,20 @@ namespace Site.Service.SiteService
         }
 
 
-        public static List<Site_Content> Site_Content_SelectPageByc_id(int cateId, int pageIndex, int pageSize)
+        public static List<Site_Content> Site_Content_SelectPageByc_id(int cateId, int pageIndex, int pageSize, out int rowCount)
         {
             ISiteService channel = Entity.CreateChannel<ISiteService>(SiteEnum.SiteService.SiteService);
-            var result = channel.Site_Content_SelectPageByc_id(cateId, pageIndex, pageSize);
+            Site_Content_SelectPageByc_idRequest request = new Site_Content_SelectPageByc_idRequest()
+            {
+                cateId = cateId,
+                pageIndex = pageIndex,
+                pageSize = pageSize
+            };
+            var result = channel.Site_Content_SelectPageByc_id(request);
             (channel as IDisposable).Dispose();
-            return result;
+
+            rowCount = result.rowCount;
+            return result.Site_Content_SelectPageByc_idResult;
         }
 
         #endregion

@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="@ViewBag.keywords" />
+    <meta name="description" content="@ViewBag.description" />
+
+    <link href="~/Content/Detial.css" rel="stylesheet" />
+    <link href="~/Content/List.css" rel="stylesheet" />
+    <link href="~/Content/Common.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+    <!--导航条 start-->
+    @{
+        Html.RenderPartial("~/Views/Home/Index_Nav.cshtml");
+     }
+    <!--导航条 end-->
+
+    <!--内容 start-->
+    <div class="content">
+        @RenderBody()
+    </div>
+    <!--内容 end-->
+    <div class="clear"></div>
+
+    <!--尾部 start-->
+    @{
+        Html.RenderPartial("~/Views/Common/Index_Foot.cshtml");
+    }
+    <!--尾部 end-->
+</body>
+</html>

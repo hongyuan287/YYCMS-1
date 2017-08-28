@@ -22,6 +22,10 @@ namespace Site.WCF.SiteService
         int Site_Cates_UpdateByc_gid(Site_Cates obj);
         [OperationContract]
         Site_Cates Site_Cates_SelectByc_gid(string c_gid);
+
+        [OperationContract]
+        Site_Cates Site_Cates_SelectByc_id(int c_id);
+
         [OperationContract]
         List<Site_Cates> Site_Cates_SelectPage(string cloumns, int pageIndex, int pageSize, string orderBy, string where, out int rowCount);
 
@@ -99,7 +103,7 @@ namespace Site.WCF.SiteService
         List<Site_Content> Site_Content_SelectPage(string cloumns, int pageIndex, int pageSize, string orderBy, string where, out int rowCount);
 
         [OperationContract]
-        List<Site_Content> Site_Content_SelectPageByc_id(int cateId, int pageIndex, int pageSize);
+        List<Site_Content> Site_Content_SelectPageByc_id(int cateId, int pageIndex, int pageSize, out int rowCount);
 
         #endregion
 

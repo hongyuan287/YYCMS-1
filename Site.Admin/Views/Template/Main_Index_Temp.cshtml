@@ -1,12 +1,14 @@
 ﻿@@{
     ViewBag.Title = "宇扬网_首页";
-    ViewBag.keywords = "宇扬";
-    ViewBag.description = "View";
+    ViewBag.keywords = "宇扬网，有你想要的";
+    ViewBag.description = "宇扬网，综合门户网站，自由发布平台，有你想要的，看你想看的";
 
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using Site.Service.SiteService.SiteServices;
 @using Site.Admin.Common;
+@using Site.Common;
+
 @{
     Dictionary<string, List<Site_CMSItem>> dic = ViewBag.dataList;
 }
@@ -56,82 +58,89 @@
         <!--分类块1-->
         <div class="content_cate">
             <div class="cate_block">
-                <span>新闻</span>
-                <a href="#" class="more">更多>></a>
+                <span>要闻</span>
+                <a href="@SiteUntility.GetRelationCateUrl("1")" target="_blank" class="more">更多>></a>
             </div>
-            <!--图-->
-            <div class="content_cate_hot">
-                <img src="~/Content/image/3.jpg" />
-                <div>
-                    <a href="#" title=""><span>美国引进垃圾大法师打发地方</span></a>
-                </div>
-            </div>
+            @{
+                for (int i = 0; i < dic["14"].GetLength<Site_CMSItem>(1); i++)
+                {
+                    <!--图-->
+                    <div class="content_cate_hot">
+                        <img src="@dic["14"][i].i_c_img_src" />
+                        <div>
+                            <a href="@SiteUntility.GetRelationDetailUrl(dic["14"][i].i_c_gid)" target="_blank" title="@dic["14"][i].i_title"><span>@dic["14"][i].i_subTitle</span></a>
+                        </div>
+                    </div>
+                }
+            }
             <!--文-->
             <div class="content_cate_hot_list">
                 <ul>
-                    <li><a href="#">新西兰历险记新西记的风格风</a></li>
-                    <li><a href="#">澳洲羊驼</a></li>
-                    <li><a href="#">大龙虾能不能吃</a></li>
-                    <li><a href="#">集散地发货计划</a></li>
-                    <li><a href="#">新西兰历险记新西记</a></li>
-                    <li><a href="#">大龙虾能不能吃</a></li>
-                    <li><a href="#">集散地发货计划</a></li>
-                    <li><a href="#">新西兰历险记水电费</a></li>
-                    <li><a href="#">新西兰历险记新西记</a></li>
+                    @{
+                        for (int i = 1; i < dic["14"].GetLength<Site_CMSItem>(6); i++)
+                        {
+                            <li><a href="@SiteUntility.GetRelationDetailUrl(dic["14"][i].i_c_gid)" target="_blank" title="@dic["14"][i].i_title">@dic["14"][i].i_subTitle</a></li>
+                        }
+                    }
                 </ul>
             </div>
         </div>
         <div class="content_cate l3">
             <div class="cate_block">
                 <span>趣事</span>
-                <a href="#" class="more">更多>></a>
+                <a href="@SiteUntility.GetRelationCateUrl("6")" class="more">更多>></a>
             </div>
-            <!--图-->
-            <div class="content_cate_hot">
-                <img src="~/Content/image/3.jpg" />
-                <div>
-                    <a href="#" title=""><span>美国引进垃圾大法师打发地方</span></a>
-                </div>
-            </div>
+            @{
+                for (int i = 0; i < dic["15"].GetLength<Site_CMSItem>(1); i++)
+                {
+                    <!--图-->
+                    <div class="content_cate_hot">
+                        <img src="@dic["15"][i].i_c_img_src" />
+                        <div>
+                            <a href="@SiteUntility.GetRelationDetailUrl(dic["15"][i].i_c_gid)" target="_blank" title="@dic["15"][i].i_title"><span>@dic["15"][i].i_subTitle</span></a>
+                        </div>
+                    </div>
+                }
+            }
             <!--文-->
             <div class="content_cate_hot_list">
                 <ul>
-                    <li><a href="#">新西兰历险记新西记的风格风</a></li>
-                    <li><a href="#">澳洲羊驼</a></li>
-                    <li><a href="#">大龙虾能不能吃</a></li>
-                    <li><a href="#">集散地发货计划</a></li>
-                    <li><a href="#">新西兰历险记新西记</a></li>
-                    <li><a href="#">大龙虾能不能吃</a></li>
-                    <li><a href="#">集散地发货计划</a></li>
-                    <li><a href="#">新西兰历险记水电费</a></li>
-                    <li><a href="#">新西兰历险记新西记</a></li>
+                    @{
+                        for (int i = 1; i < dic["15"].GetLength<Site_CMSItem>(6); i++)
+                        {
+                            <li><a href="@SiteUntility.GetRelationDetailUrl(dic["15"][i].i_c_gid)" target="_blank" title="@dic["15"][i].i_title">@dic["15"][i].i_subTitle</a></li>
+                        }
+                    }
                 </ul>
             </div>
         </div>
         <div class="content_cate l3">
             <div class="cate_block">
                 <span>美女</span>
-                <a href="#" class="more">更多>></a>
+                <a href="@SiteUntility.GetRelationCateUrl("7")" class="more">更多>></a>
             </div>
-            <!--图-->
-            <div class="content_cate_hot">
-                <img src="~/Content/image/3.jpg" />
-                <div>
-                    <a href="#" title=""><span>美国引进垃圾大法师打发地方</span></a>
-                </div>
-            </div>
+            @{
+                for (int i = 0; i < dic["16"].GetLength<Site_CMSItem>(1); i++)
+                {
+                    <!--图-->
+                    <div class="content_cate_hot">
+                        <img src="@dic["16"][i].i_c_img_src" />
+                        <div>
+                            <a href="@SiteUntility.GetRelationDetailUrl(dic["16"][i].i_c_gid)" target="_blank" title="@dic["16"][i].i_title"><span>@dic["16"][i].i_subTitle</span></a>
+                        </div>
+                    </div>
+
+                }
+            }
             <!--文-->
             <div class="content_cate_hot_list">
                 <ul>
-                    <li><a href="#">新西兰历险记新西记的风格风</a></li>
-                    <li><a href="#">澳洲羊驼</a></li>
-                    <li><a href="#">大龙虾能不能吃</a></li>
-                    <li><a href="#">集散地发货计划</a></li>
-                    <li><a href="#">新西兰历险记新西记</a></li>
-                    <li><a href="#">大龙虾能不能吃</a></li>
-                    <li><a href="#">集散地发货计划</a></li>
-                    <li><a href="#">新西兰历险记水电费</a></li>
-                    <li><a href="#">新西兰历险记新西记</a></li>
+                    @{
+                        for (int i = 1; i < dic["16"].GetLength<Site_CMSItem>(6); i++)
+                        {
+                            <li><a href="@SiteUntility.GetRelationDetailUrl(dic["16"][i].i_c_gid)" target="_blank" title="@dic["16"][i].i_title">@dic["16"][i].i_subTitle</a></li>
+                        }
+                    }
                 </ul>
             </div>
         </div>
@@ -139,82 +148,89 @@
         <!--分类块2-->
         <div class="content_cate">
             <div class="cate_block">
-                <span>新闻</span>
-                <a href="#" class="more">更多>></a>
+                <span>生活</span>
+                <a href="@SiteUntility.GetRelationCateUrl("8")" target="_blank" class="more">更多>></a>
             </div>
-            <!--图-->
-            <div class="content_cate_hot">
-                <img src="~/Content/image/3.jpg" />
-                <div>
-                    <a href="#" title=""><span>美国引进垃圾大法师打发地方</span></a>
-                </div>
-            </div>
+            @{
+                for (int i = 0; i < dic["17"].GetLength<Site_CMSItem>(1); i++)
+                {
+                    <!--图-->
+                    <div class="content_cate_hot">
+                        <img src="@dic["17"][i].i_c_img_src" />
+                        <div>
+                            <a href="@SiteUntility.GetRelationDetailUrl(dic["17"][i].i_c_gid)" target="_blank" title="@dic["17"][i].i_title"><span>@dic["17"][i].i_subTitle</span></a>
+                        </div>
+                    </div>
+                }
+            }
             <!--文-->
             <div class="content_cate_hot_list">
                 <ul>
-                    <li><a href="#">新西兰历险记新西记的风格风</a></li>
-                    <li><a href="#">澳洲羊驼</a></li>
-                    <li><a href="#">大龙虾能不能吃</a></li>
-                    <li><a href="#">集散地发货计划</a></li>
-                    <li><a href="#">新西兰历险记新西记</a></li>
-                    <li><a href="#">大龙虾能不能吃</a></li>
-                    <li><a href="#">集散地发货计划</a></li>
-                    <li><a href="#">新西兰历险记水电费</a></li>
-                    <li><a href="#">新西兰历险记新西记</a></li>
+                    @{
+                        for (int i = 1; i < dic["17"].GetLength<Site_CMSItem>(6); i++)
+                        {
+                            <li><a href="@SiteUntility.GetRelationDetailUrl(dic["17"][i].i_c_gid)" target="_blank" title="@dic["17"][i].i_title">@dic["17"][i].i_subTitle</a></li>
+                        }
+                    }
                 </ul>
             </div>
         </div>
         <div class="content_cate l3">
             <div class="cate_block">
-                <span>趣事</span>
-                <a href="#" class="more">更多>></a>
+                <span>搞笑</span>
+                <a href="@SiteUntility.GetRelationCateUrl("9")" class="more">更多>></a>
             </div>
-            <!--图-->
-            <div class="content_cate_hot">
-                <img src="~/Content/image/3.jpg" />
-                <div>
-                    <a href="#" title=""><span>美国引进垃圾大法师打发地方</span></a>
-                </div>
-            </div>
+            @{
+                for (int i = 0; i < dic["18"].GetLength<Site_CMSItem>(1); i++)
+                {
+                    <!--图-->
+                    <div class="content_cate_hot">
+                        <img src="@dic["18"][i].i_c_img_src" />
+                        <div>
+                            <a href="@SiteUntility.GetRelationDetailUrl(dic["18"][i].i_c_gid)" target="_blank" title="@dic["18"][i].i_title"><span>@dic["18"][i].i_subTitle</span></a>
+                        </div>
+                    </div>
+                }
+            }
             <!--文-->
             <div class="content_cate_hot_list">
                 <ul>
-                    <li><a href="#">新西兰历险记新西记的风格风</a></li>
-                    <li><a href="#">澳洲羊驼</a></li>
-                    <li><a href="#">大龙虾能不能吃</a></li>
-                    <li><a href="#">集散地发货计划</a></li>
-                    <li><a href="#">新西兰历险记新西记</a></li>
-                    <li><a href="#">大龙虾能不能吃</a></li>
-                    <li><a href="#">集散地发货计划</a></li>
-                    <li><a href="#">新西兰历险记水电费</a></li>
-                    <li><a href="#">新西兰历险记新西记</a></li>
+                    @{
+                        for (int i = 1; i < dic["18"].GetLength<Site_CMSItem>(6); i++)
+                        {
+                            <li><a href="@SiteUntility.GetRelationDetailUrl(dic["18"][i].i_c_gid)" target="_blank" title="@dic["18"][i].i_title">@dic["18"][i].i_subTitle</a></li>
+                        }
+                    }
                 </ul>
             </div>
         </div>
         <div class="content_cate l3">
             <div class="cate_block">
-                <span>美女</span>
-                <a href="#" class="more">更多>></a>
+                <span>斗图</span>
+                <a href="@SiteUntility.GetRelationCateUrl("10")" class="more">更多>></a>
             </div>
-            <!--图-->
-            <div class="content_cate_hot">
-                <img src="~/Content/image/3.jpg" />
-                <div>
-                    <a href="#" title=""><span>美国引进垃圾大法师打发地方</span></a>
-                </div>
-            </div>
+            @{
+                for (int i = 0; i < dic["19"].GetLength<Site_CMSItem>(1); i++)
+                {
+                    <!--图-->
+                    <div class="content_cate_hot">
+                        <img src="@dic["19"][i].i_c_img_src" />
+                        <div>
+                            <a href="@SiteUntility.GetRelationDetailUrl(dic["19"][i].i_c_gid)" target="_blank" title="@dic["19"][i].i_title"><span>@dic["19"][i].i_subTitle</span></a>
+                        </div>
+                    </div>
+
+                }
+            }
             <!--文-->
             <div class="content_cate_hot_list">
                 <ul>
-                    <li><a href="#">新西兰历险记新西记的风格风</a></li>
-                    <li><a href="#">澳洲羊驼</a></li>
-                    <li><a href="#">大龙虾能不能吃</a></li>
-                    <li><a href="#">集散地发货计划</a></li>
-                    <li><a href="#">新西兰历险记新西记</a></li>
-                    <li><a href="#">大龙虾能不能吃</a></li>
-                    <li><a href="#">集散地发货计划</a></li>
-                    <li><a href="#">新西兰历险记水电费</a></li>
-                    <li><a href="#">新西兰历险记新西记</a></li>
+                    @{
+                        for (int i = 1; i < dic["19"].GetLength<Site_CMSItem>(6); i++)
+                        {
+                            <li><a href="@SiteUntility.GetRelationDetailUrl(dic["19"][i].i_c_gid)" target="_blank" title="@dic["19"][i].i_title">@dic["19"][i].i_subTitle</a></li>
+                        }
+                    }
                 </ul>
             </div>
         </div>

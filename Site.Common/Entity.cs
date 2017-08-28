@@ -310,6 +310,26 @@ namespace Site.Common
             return str.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
+        /// <summary>
+        /// 返回指定长度的元素，如何集合元素长度小于指定数，则返回集合的长度
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static int GetLength<T>(this List<T> list, int length)
+        {
+            if (list.Count > length)
+            {
+                return length;
+            }
+            else
+            {
+                return list.Count;
+            }
+        }
+
+
         #endregion
 
         #region 生成guid + string GenerateGUID(int length)

@@ -1066,6 +1066,12 @@ namespace Site.Service.SiteService.SiteServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://service.jsonyang.com/ISiteService/Site_Cates_SelectByc_gid", ReplyAction="http://service.jsonyang.com/ISiteService/Site_Cates_SelectByc_gidResponse")]
         System.Threading.Tasks.Task<Site.Service.SiteService.SiteServices.Site_Cates> Site_Cates_SelectByc_gidAsync(string c_gid);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://service.jsonyang.com/ISiteService/Site_Cates_SelectByc_id", ReplyAction="http://service.jsonyang.com/ISiteService/Site_Cates_SelectByc_idResponse")]
+        Site.Service.SiteService.SiteServices.Site_Cates Site_Cates_SelectByc_id(int c_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://service.jsonyang.com/ISiteService/Site_Cates_SelectByc_id", ReplyAction="http://service.jsonyang.com/ISiteService/Site_Cates_SelectByc_idResponse")]
+        System.Threading.Tasks.Task<Site.Service.SiteService.SiteServices.Site_Cates> Site_Cates_SelectByc_idAsync(int c_id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://service.jsonyang.com/ISiteService/Site_Cates_SelectPage", ReplyAction="http://service.jsonyang.com/ISiteService/Site_Cates_SelectPageResponse")]
         Site.Service.SiteService.SiteServices.Site_Cates_SelectPageResponse Site_Cates_SelectPage(Site.Service.SiteService.SiteServices.Site_Cates_SelectPageRequest request);
         
@@ -1212,10 +1218,11 @@ namespace Site.Service.SiteService.SiteServices {
         System.Threading.Tasks.Task<Site.Service.SiteService.SiteServices.Site_Content_SelectPageResponse> Site_Content_SelectPageAsync(Site.Service.SiteService.SiteServices.Site_Content_SelectPageRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://service.jsonyang.com/ISiteService/Site_Content_SelectPageByc_id", ReplyAction="http://service.jsonyang.com/ISiteService/Site_Content_SelectPageByc_idResponse")]
-        System.Collections.Generic.List<Site.Service.SiteService.SiteServices.Site_Content> Site_Content_SelectPageByc_id(int cateId, int pageIndex, int pageSize);
+        Site.Service.SiteService.SiteServices.Site_Content_SelectPageByc_idResponse Site_Content_SelectPageByc_id(Site.Service.SiteService.SiteServices.Site_Content_SelectPageByc_idRequest request);
         
+        // CODEGEN: 正在生成消息协定，应为该操作具有多个返回值。
         [System.ServiceModel.OperationContractAttribute(Action="http://service.jsonyang.com/ISiteService/Site_Content_SelectPageByc_id", ReplyAction="http://service.jsonyang.com/ISiteService/Site_Content_SelectPageByc_idResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Site.Service.SiteService.SiteServices.Site_Content>> Site_Content_SelectPageByc_idAsync(int cateId, int pageIndex, int pageSize);
+        System.Threading.Tasks.Task<Site.Service.SiteService.SiteServices.Site_Content_SelectPageByc_idResponse> Site_Content_SelectPageByc_idAsync(Site.Service.SiteService.SiteServices.Site_Content_SelectPageByc_idRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1478,6 +1485,50 @@ namespace Site.Service.SiteService.SiteServices {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="Site_Content_SelectPageByc_id", WrapperNamespace="http://service.jsonyang.com", IsWrapped=true)]
+    public partial class Site_Content_SelectPageByc_idRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://service.jsonyang.com", Order=0)]
+        public int cateId;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://service.jsonyang.com", Order=1)]
+        public int pageIndex;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://service.jsonyang.com", Order=2)]
+        public int pageSize;
+        
+        public Site_Content_SelectPageByc_idRequest() {
+        }
+        
+        public Site_Content_SelectPageByc_idRequest(int cateId, int pageIndex, int pageSize) {
+            this.cateId = cateId;
+            this.pageIndex = pageIndex;
+            this.pageSize = pageSize;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="Site_Content_SelectPageByc_idResponse", WrapperNamespace="http://service.jsonyang.com", IsWrapped=true)]
+    public partial class Site_Content_SelectPageByc_idResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://service.jsonyang.com", Order=0)]
+        public System.Collections.Generic.List<Site.Service.SiteService.SiteServices.Site_Content> Site_Content_SelectPageByc_idResult;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://service.jsonyang.com", Order=1)]
+        public int rowCount;
+        
+        public Site_Content_SelectPageByc_idResponse() {
+        }
+        
+        public Site_Content_SelectPageByc_idResponse(System.Collections.Generic.List<Site.Service.SiteService.SiteServices.Site_Content> Site_Content_SelectPageByc_idResult, int rowCount) {
+            this.Site_Content_SelectPageByc_idResult = Site_Content_SelectPageByc_idResult;
+            this.rowCount = rowCount;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface ISiteServiceChannel : Site.Service.SiteService.SiteServices.ISiteService, System.ServiceModel.IClientChannel {
     }
@@ -1535,6 +1586,14 @@ namespace Site.Service.SiteService.SiteServices {
         
         public System.Threading.Tasks.Task<Site.Service.SiteService.SiteServices.Site_Cates> Site_Cates_SelectByc_gidAsync(string c_gid) {
             return base.Channel.Site_Cates_SelectByc_gidAsync(c_gid);
+        }
+        
+        public Site.Service.SiteService.SiteServices.Site_Cates Site_Cates_SelectByc_id(int c_id) {
+            return base.Channel.Site_Cates_SelectByc_id(c_id);
+        }
+        
+        public System.Threading.Tasks.Task<Site.Service.SiteService.SiteServices.Site_Cates> Site_Cates_SelectByc_idAsync(int c_id) {
+            return base.Channel.Site_Cates_SelectByc_idAsync(c_id);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1786,12 +1845,23 @@ namespace Site.Service.SiteService.SiteServices {
             return base.Channel.Site_Content_SelectPageAsync(request);
         }
         
-        public System.Collections.Generic.List<Site.Service.SiteService.SiteServices.Site_Content> Site_Content_SelectPageByc_id(int cateId, int pageIndex, int pageSize) {
-            return base.Channel.Site_Content_SelectPageByc_id(cateId, pageIndex, pageSize);
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Site.Service.SiteService.SiteServices.Site_Content_SelectPageByc_idResponse Site.Service.SiteService.SiteServices.ISiteService.Site_Content_SelectPageByc_id(Site.Service.SiteService.SiteServices.Site_Content_SelectPageByc_idRequest request) {
+            return base.Channel.Site_Content_SelectPageByc_id(request);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Site.Service.SiteService.SiteServices.Site_Content>> Site_Content_SelectPageByc_idAsync(int cateId, int pageIndex, int pageSize) {
-            return base.Channel.Site_Content_SelectPageByc_idAsync(cateId, pageIndex, pageSize);
+        public System.Collections.Generic.List<Site.Service.SiteService.SiteServices.Site_Content> Site_Content_SelectPageByc_id(int cateId, int pageIndex, int pageSize, out int rowCount) {
+            Site.Service.SiteService.SiteServices.Site_Content_SelectPageByc_idRequest inValue = new Site.Service.SiteService.SiteServices.Site_Content_SelectPageByc_idRequest();
+            inValue.cateId = cateId;
+            inValue.pageIndex = pageIndex;
+            inValue.pageSize = pageSize;
+            Site.Service.SiteService.SiteServices.Site_Content_SelectPageByc_idResponse retVal = ((Site.Service.SiteService.SiteServices.ISiteService)(this)).Site_Content_SelectPageByc_id(inValue);
+            rowCount = retVal.rowCount;
+            return retVal.Site_Content_SelectPageByc_idResult;
+        }
+        
+        public System.Threading.Tasks.Task<Site.Service.SiteService.SiteServices.Site_Content_SelectPageByc_idResponse> Site_Content_SelectPageByc_idAsync(Site.Service.SiteService.SiteServices.Site_Content_SelectPageByc_idRequest request) {
+            return base.Channel.Site_Content_SelectPageByc_idAsync(request);
         }
     }
 }

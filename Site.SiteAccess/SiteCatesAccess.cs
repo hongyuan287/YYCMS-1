@@ -161,6 +161,32 @@ namespace Site.SiteAccess
         }
         #endregion
 
+        #region Proc_Site_Cates_SelectByc_id
+        public Site_Cates Site_Cates_SelectByc_id(int c_id)
+        {
+            DbCommand dbCmd = db.GetStoredProcCommand("Proc_Site_Cates_SelectByc_id");
+            db.AddInParameter(dbCmd, "@c_id", DbType.Int32, c_id);
+            Site_Cates obj = null;
+            try
+            {
+                using (IDataReader reader = db.ExecuteReader(dbCmd))
+                {
+                    while (reader.Read())
+                    {
+                        //属性赋值
+                        obj = Obj2Model<Site_Cates>(reader);
+                    }
+                }
+                return obj;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        #endregion
+
+
         #region Proc_Site_Cates_SelectPage
         public List<Site_Cates> Site_Cates_SelectPage(string cloumns, int pageIndex, int pageSize, string orderBy, string where, out int rowCount)
         {

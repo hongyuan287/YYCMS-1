@@ -15,10 +15,15 @@ namespace Site.Main
 
             routes.MapRoute(
                 name: "List",
-                url: "List/{cateId}.html",
+                url: "List/{pageParam}.html",
                 defaults: new { controller = "List", action = "Index" }
             );
 
+            routes.MapRoute(
+                name: "Detail",
+                url: "Detail/{gid}.html",
+                defaults: new { controller = "Detail", action = "Index" }
+            );
 
             routes.MapRoute(
                 name: "Default",

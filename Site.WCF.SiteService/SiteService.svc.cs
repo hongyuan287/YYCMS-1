@@ -46,6 +46,15 @@ namespace Site.WCF.SiteService
             }
         }
 
+        public Site_Cates Site_Cates_SelectByc_id(int c_id)
+        {
+            using (SiteCatesAccess access = new SiteCatesAccess())
+            {
+                return access.Site_Cates_SelectByc_id(c_id);
+            }
+
+        }
+
         public List<Site_Cates> Site_Cates_SelectPage(string cloumns, int pageIndex, int pageSize, string orderBy, string where, out int rowCount)
         {
             using (SiteCatesAccess access = new SiteCatesAccess())
@@ -243,11 +252,11 @@ namespace Site.WCF.SiteService
             }
         }
 
-        public List<Site_Content> Site_Content_SelectPageByc_id(int cateId, int pageIndex, int pageSize)
+        public List<Site_Content> Site_Content_SelectPageByc_id(int cateId, int pageIndex, int pageSize, out int rowCount)
         {
             using (SiteContentAccesss access = new SiteContentAccesss())
             {
-                return access.Site_Content_SelectPageByc_id(cateId, pageIndex, pageSize);
+                return access.Site_Content_SelectPageByc_id(cateId, pageIndex, pageSize, out rowCount);
             }
         }
 

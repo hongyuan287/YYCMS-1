@@ -113,13 +113,13 @@
 
 .content {
     width: 1200px;
-    height: 50px;
     margin-top: 10px;
 }
 
 .content_left {
     width: 700px;
     margin: 0px;
+    min-height: 500px;
     float: left;
     overflow: hidden;
 }

@@ -195,12 +195,14 @@ namespace Site.SiteAccess
         #endregion
 
         #region Proc_Site_Content_SelectPageByc_id
-        public List<Site_Content> Site_Content_SelectPageByc_id(int cateId, int pageIndex, int pageSize)
+        public List<Site_Content> Site_Content_SelectPageByc_id(int cateId, int pageIndex, int pageSize, out int rowCount)
         {
             DbCommand dbCmd = db.GetStoredProcCommand("Proc_Site_Content_SelectPageByc_id");
             db.AddInParameter(dbCmd, "@cateId", DbType.Int32, cateId);
             db.AddInParameter(dbCmd, "@pageIndex", DbType.Int32, pageIndex);
             db.AddInParameter(dbCmd, "@pageSize", DbType.Int32, pageSize);
+            db.AddOutParameter(dbCmd, "@rowCount", DbType.Int32, 4);
+
             List<Site_Content> list = new List<Site_Content>();
             try
             {
@@ -215,6 +217,7 @@ namespace Site.SiteAccess
                     }
                     reader.NextResult();
                 }
+                rowCount = (int)dbCmd.Parameters["@rowCount"].Value;
 
                 return list;
             }

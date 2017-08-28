@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "宇扬网_访问出错了";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="height:500px;">
+    <h3>访问出错了，<span id="times" style="font-size:24px;color:red;" >5</span>秒后返回主页......</h3>
+    <a href="/" style="color:blue;text-decoration:underline;">点击立即返回</a>
+</div>
+<script>
+    $(function () {
+        nav_time();
+    });
+
+    function nav_time() {
+        setTimeout(function () {
+            var t = parseInt($("#times").html());
+            if (t == 0) {
+                location.href = "/";
+                return;
+            }
+            $("#times").html(t - 1);
+            nav_time();
+        }, 1000);
+    }
+
+</script>

@@ -1,15 +1,23 @@
-﻿@{
-    ViewBag.Title = "List";
-    ViewBag.Title = "宇扬网_列表_分类";
-    ViewBag.keywords = "列表";
+﻿@using Site.Service.SiteService.SiteServices;
+@using Site.Common;
+@{
+
+    int pageSize = ViewBag.pageSize;
+    int pageIndex = ViewBag.pageIndex;
+    int rowCount = ViewBag.rowCount;
+
+    int cateId = ViewBag.cateId;
+    Site_Cates c_info = ViewBag.c_info;
+    List<Site_Content> list = ViewBag.list;
+}
+@{
+    ViewBag.Title = "宇扬网_列表页_" + c_info.c_name;
+    ViewBag.keywords = "宇扬网_" + c_info.c_name;
+    ViewBag.description = ViewBag.Title + ",汇聚全网最全信息，即时信息";
 
     Layout = "~/Views/Shared/_Layout_List.cshtml";
 }
-@using Site.Service.SiteService.SiteServices;
-@using Site.Common;
-@{
-    List<Site_Content> list = ViewBag.list;
-}
+
 
 <div class="content_left">
     <div class="content_block">
@@ -29,186 +37,12 @@
             </a>
         }
     </div>
-    <div class="content_page">
-        <a href="#">首页</a>
-        <a href="#">上一页</a>
-        <a href="#">1</a>
-        <a href="#" class="cur">2</a>
-        <a href="#">3</a>
-        <a href="#">下一页</a>
-        <a href="#">尾页</a>
-    </div>
+    @Html.Raw(SiteUntility.CreateListPage(cateId.ToString(), pageSize, pageIndex, rowCount))
 </div>
 
 <div class="content_right">
-    <!--广告位-->
-    <div class="ad_top_block">
-
-    </div>
-    <!--周阅读排行榜-->
-    <div class="content_whot">
-        <div class="whot_block">
-            <span>周阅读排行榜</span>
-        </div>
-        <span class="whot_item">
-            <span class="whot hotsort">1</span>
-            <a href="#" title="">dfdfdfdfdf</a>
-            <span class="whot_visit">1256</span>
-        </span>
-
-        <span class="whot_item">
-            <span class="whot hotsort">2</span>
-            <a href="#" title="">dfdfdfdfdf</a>
-            <span class="whot_visit">1256</span>
-        </span>
-
-        <span class="whot_item">
-            <span class="whot hotsort">3</span>
-            <a href="#" title="">dfdfdfdfdf</a>
-            <span class="whot_visit">1256</span>
-        </span>
-
-        <span class="whot_item">
-            <span class="whot secondhotsort">4</span>
-            <a href="#" title="">dfdfdfdfdf</a>
-            <span class="whot_visit">1256</span>
-        </span>
-
-        <span class="whot_item">
-            <span class="whot secondhotsort">5</span>
-            <a href="#" title="">dfdfdfdfdf</a>
-            <span class="whot_visit">1256</span>
-        </span>
-
-        <span class="whot_item">
-            <span class="whot secondhotsort">6</span>
-            <a href="#" title="">dfdfdfdfdf</a>
-            <span class="whot_visit">1256</span>
-        </span>
-        <span class="whot_item">
-            <span class="whot ">7</span>
-            <a href="#" title="">dfdfdfdfdf</a>
-            <span class="whot_visit">1256</span>
-        </span>
-        <span class="whot_item">
-            <span class="whot ">8</span>
-            <a href="#" title="">dfdfdfdfdf</a>
-            <span class="whot_visit">1256</span>
-        </span>
-        <span class="whot_item">
-            <span class="whot ">9</span>
-            <a href="#" title="">dfdfdfdfdf</a>
-            <span class="whot_visit">1256</span>
-        </span>
-        <span class="whot_item">
-            <span class="whot ">10</span>
-            <a href="#" title="">dfdfdfdfdf</a>
-            <span class="whot_visit">1256</span>
-        </span>
-
-    </div>
-    <!--广告位-->
-    <div class="ad_block">
-
-    </div>
-    <!--热门推荐-->
-    <div class="content_tj">
-        <div class="whot_block">
-            <span>热门推荐</span>
-        </div>
-        <ol>
-            <li>
-                <span class="whot_item">
-                    <a href="#" title="">dfdfdfdfdf</a>
-                    <span class="whot_visit">1256</span>
-                </span>
-            </li>
-            <li>
-                <span class="whot_item">
-                    <a href="#" title="">dfdfdfdfdf</a>
-                    <span class="whot_visit">1256</span>
-                </span>
-            </li>
-            <li>
-                <span class="whot_item">
-                    <a href="#" title="">dfdfdfdfdf</a>
-                    <span class="whot_visit">1256</span>
-                </span>
-            </li>
-            <li>
-                <span class="whot_item">
-                    <a href="#" title="">dfdfdfdfdf</a>
-                    <span class="whot_visit">1256</span>
-                </span>
-            </li>
-            <li>
-                <span class="whot_item">
-                    <a href="#" title="">dfdfdfdfdf</a>
-                    <span class="whot_visit">1256</span>
-                </span>
-            </li>
-            <li>
-                <span class="whot_item">
-                    <a href="#" title="">dfdfdfdfdf</a>
-                    <span class="whot_visit">1256</span>
-                </span>
-            </li>
-            <li>
-                <span class="whot_item">
-                    <a href="#" title="">dfdfdfdfdf</a>
-                    <span class="whot_visit">1256</span>
-                </span>
-            </li>
-            <li>
-                <span class="whot_item">
-                    <a href="#" title="">dfdfdfdfdf</a>
-                    <span class="whot_visit">1256</span>
-                </span>
-            </li>
-            <li>
-                <span class="whot_item">
-                    <a href="#" title="">dfdfdfdfdf</a>
-                    <span class="whot_visit">1256</span>
-                </span>
-            </li>
-            <li>
-                <span class="whot_item">
-                    <a href="#" title="">dfdfdfdfdf</a>
-                    <span class="whot_visit">1256</span>
-                </span>
-            </li>
-        </ol>
-    </div>
-    <!--热辣美女-->
-    <div class="right_bottom">
-        <div class="whot_block">
-            <span>热辣美女</span>
-        </div>
-        <a href="#" title="">
-            <div class="right_bottom_block">
-                <img src="~/Content/image/5.jpg" />
-                <div class="block_title">热辣美女饥渴</div>
-            </div>
-        </a>
-        <a href="#" title="">
-            <div class="right_bottom_block ml10">
-                <img src="~/Content/image/6.jpg" />
-                <div class="block_title">大分工的水电费大分工的水电费</div>
-            </div>
-        </a>
-        <a href="#" title="">
-            <div class="right_bottom_block ">
-                <img src="~/Content/image/7.jpg" />
-                <div class="block_title">大分工的水电费大分工的水电费</div>
-            </div>
-        </a>
-        <a href="#" title="">
-            <div class="right_bottom_block  ml10">
-                <img src="~/Content/image/8.jpg" />
-                <div class="block_title">大分工的水电费大分工的水电费</div>
-            </div>
-        </a>
-    </div>
-
+    @{
+        Html.RenderPartial("~/Views/Common/ListRight.cshtml");
+    }
 </div>
 

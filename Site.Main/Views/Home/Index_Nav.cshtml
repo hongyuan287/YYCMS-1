@@ -1,24 +1,36 @@
 ﻿
 @{
-    string cateId = Request.RequestContext.RouteData.Values["cateId"]==null?"":Request.RequestContext.RouteData.Values["cateId"].ToString();
+    string pageParam = Request.RequestContext.RouteData.Values["pageParam"]==null?"":Request.RequestContext.RouteData.Values["pageParam"].ToString();
+    string[] arr = pageParam.Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries);
+    string cateId=string.Empty;
+    if(arr.Length>0)
+    {
+        cateId=arr[0];
+    }
 }
 
 <div class="head_nav">
     <ul class="head_nav_li">
                 <li @(cateId==" "?"class=cur":"")>
-                    <a href="/" target="_blank" title="首页">首页</a>
+                    <a href="/" title="首页">首页</a>
                 </li>
                 <li @(cateId=="1"?"class=cur":"")>
-                    <a href="/list/1.html" target="_blank" title="要闻">要闻</a>
+                    <a href="/list/1.html" title="要闻">要闻</a>
                 </li>
                 <li @(cateId=="6"?"class=cur":"")>
-                    <a href="/list/6.html" target="_blank" title="趣事">趣事</a>
+                    <a href="/list/6.html" title="趣事">趣事</a>
                 </li>
                 <li @(cateId=="7"?"class=cur":"")>
-                    <a href="/list/7.html" target="_blank" title="美女">美女</a>
+                    <a href="/list/7.html" title="美女">美女</a>
                 </li>
                 <li @(cateId=="8"?"class=cur":"")>
-                    <a href="/list/8.html" target="_blank" title="生活">生活</a>
+                    <a href="/list/8.html" title="生活">生活</a>
+                </li>
+                <li @(cateId=="9"?"class=cur":"")>
+                    <a href="/list/9.html" title="搞笑">搞笑</a>
+                </li>
+                <li @(cateId=="10"?"class=cur":"")>
+                    <a href="/list/10.html" title="斗图">斗图</a>
                 </li>
     </ul>
 </div>

@@ -4,7 +4,13 @@
     Dictionary<string, List<Site_CMSItem>> dic = ViewBag.dataList;
 }
 @@{
-    string cateId = Request.RequestContext.RouteData.Values["cateId"]==null?"":Request.RequestContext.RouteData.Values["cateId"].ToString();
+    string pageParam = Request.RequestContext.RouteData.Values["pageParam"]==null?"":Request.RequestContext.RouteData.Values["pageParam"].ToString();
+    string[] arr = pageParam.Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries);
+    string cateId=string.Empty;
+    if(arr.Length>0)
+    {
+        cateId=arr[0];
+    }
 }
 
 <div class="head_nav">
@@ -14,7 +20,7 @@
             foreach (Site_CMSItem item in dic["10"])
             {
                 <li @@(cateId=="@item.i_intro"?"class=cur":"")>
-                    <a href="@SiteUntility.GetRelationCateUrl(item.i_intro)" target="_blank" title="@item.i_title">@item.i_title</a>
+                    <a href="@SiteUntility.GetRelationCateUrl(item.i_intro)" title="@item.i_title">@item.i_title</a>
                 </li>
             }
         }

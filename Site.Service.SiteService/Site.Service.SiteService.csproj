@@ -96,6 +96,9 @@
     <None Include="Connected Services\SiteServices\Site.Service.SiteService.SiteServices.Site_Content.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\SiteServices\Site.Service.SiteService.SiteServices.Site_Content_SelectPageByc_idResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\SiteServices\Site.Service.SiteService.SiteServices.Site_Content_SelectPageResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

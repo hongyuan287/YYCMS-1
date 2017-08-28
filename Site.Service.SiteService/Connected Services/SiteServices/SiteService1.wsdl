@@ -38,6 +38,12 @@
   <wsdl:message name="ISiteService_Site_Cates_SelectByc_gid_OutputMessage">
     <wsdl:part name="parameters" element="tns:Site_Cates_SelectByc_gidResponse" />
   </wsdl:message>
+  <wsdl:message name="ISiteService_Site_Cates_SelectByc_id_InputMessage">
+    <wsdl:part name="parameters" element="tns:Site_Cates_SelectByc_id" />
+  </wsdl:message>
+  <wsdl:message name="ISiteService_Site_Cates_SelectByc_id_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Site_Cates_SelectByc_idResponse" />
+  </wsdl:message>
   <wsdl:message name="ISiteService_Site_Cates_SelectPage_InputMessage">
     <wsdl:part name="parameters" element="tns:Site_Cates_SelectPage" />
   </wsdl:message>
@@ -199,6 +205,10 @@
       <wsdl:input wsaw:Action="http://service.jsonyang.com/ISiteService/Site_Cates_SelectByc_gid" message="tns:ISiteService_Site_Cates_SelectByc_gid_InputMessage" />
       <wsdl:output wsaw:Action="http://service.jsonyang.com/ISiteService/Site_Cates_SelectByc_gidResponse" message="tns:ISiteService_Site_Cates_SelectByc_gid_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="Site_Cates_SelectByc_id">
+      <wsdl:input wsaw:Action="http://service.jsonyang.com/ISiteService/Site_Cates_SelectByc_id" message="tns:ISiteService_Site_Cates_SelectByc_id_InputMessage" />
+      <wsdl:output wsaw:Action="http://service.jsonyang.com/ISiteService/Site_Cates_SelectByc_idResponse" message="tns:ISiteService_Site_Cates_SelectByc_id_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Site_Cates_SelectPage">
       <wsdl:input wsaw:Action="http://service.jsonyang.com/ISiteService/Site_Cates_SelectPage" message="tns:ISiteService_Site_Cates_SelectPage_InputMessage" />
       <wsdl:output wsaw:Action="http://service.jsonyang.com/ISiteService/Site_Cates_SelectPageResponse" message="tns:ISiteService_Site_Cates_SelectPage_OutputMessage" />
@@ -328,6 +338,15 @@
     </wsdl:operation>
     <wsdl:operation name="Site_Cates_SelectByc_gid">
       <soap12:operation soapAction="http://service.jsonyang.com/ISiteService/Site_Cates_SelectByc_gid" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Site_Cates_SelectByc_id">
+      <soap12:operation soapAction="http://service.jsonyang.com/ISiteService/Site_Cates_SelectByc_id" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
