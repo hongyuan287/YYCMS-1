@@ -329,6 +329,25 @@ namespace Site.Common
             }
         }
 
+        /// <summary>
+        /// 返回指定长度的元素,如何集合元素长度小于指定数，则返回整个集合
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static List<T> GetLengthObject<T>(this List<T> list, int length)
+        {
+            if (list.Count > length)
+            {
+                return list.Take(length).ToList();
+            }
+            else
+            {
+                return list;
+            }
+        }
+
 
         #endregion
 

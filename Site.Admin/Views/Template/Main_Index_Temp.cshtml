@@ -241,7 +241,7 @@
         <!--右侧热点-->
         <div class="content_list_hot">
             <ul>
-                @for (int i = 0; i < (dic["13"].Count>9?9: dic["13"].Count); i++)
+                @for (int i = 0; i < dic["13"].GetLength<Site_CMSItem>(9); i++)
                 {
                     <li><a href="@SiteUntility.GetRelationDetailUrl(dic["13"][i].i_c_gid)" target="_blank" title="@dic["13"][i].i_title">@(dic["13"][i].i_subTitle.Length>9?dic["13"][i].i_subTitle.Substring(0,9):dic["13"][i].i_subTitle)</a></li>
                 }
@@ -249,7 +249,7 @@
         </div>
         <!--右侧图文-->
         <div class="content_block">
-            @foreach (Site_CMSItem item in dic["12"])
+            @foreach (Site_CMSItem item in dic["12"].GetLengthObject<Site_CMSItem>(3))
             {
                 <a href="@SiteUntility.GetRelationDetailUrl(item.i_c_gid)" target="_blank" title="@item.i_title">
                     <div class="content_img_hot">
