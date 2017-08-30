@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using Site.Common;
 using System.Configuration;
+using System.Net;
+using System.IO;
 
 namespace Site.Common
 {
@@ -108,5 +110,50 @@ namespace Site.Common
         }
 
 
+        /// <summary>
+        /// 远程抓取图片
+        /// </summary>
+        /// <param name="imageHttpUrl"></param>
+        /// <returns></returns>
+        public static byte[] GetRemoteImage(string imageHttpUrl, out string error)
+        {
+            byte[] imgData = null;
+            error = "";
+            var request = HttpWebRequest.Create(imageHttpUrl) as HttpWebRequest;
+            using (var response = request.GetResponse() as HttpWebResponse)
+            {
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    error = "Url returns " + response.StatusCode + ", " + response.StatusDescription;
+                }
+                if (response.ContentType.IndexOf("image") == -1)
+                {
+                    error = "Url is not an image";
+                }
+
+                try
+                {
+                    var stream = response.GetResponseStream();
+                    var reader = new BinaryReader(stream);
+                    byte[] bytes;
+                    using (var ms = new MemoryStream())
+                    {
+                        byte[] buffer = new byte[4096];
+                        int count;
+                        while ((count = reader.Read(buffer, 0, buffer.Length)) != 0)
+                        {
+                            ms.Write(buffer, 0, count);
+                        }
+                        bytes = ms.ToArray();
+                    }
+                    imgData = bytes;
+                }
+                catch (Exception e)
+                {
+                    error = "抓取错误：" + e.Message;
+                }
+            }
+            return imgData;
+        }
     }
 }

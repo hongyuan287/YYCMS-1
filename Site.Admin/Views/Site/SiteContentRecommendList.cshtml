@@ -96,7 +96,6 @@
                         mDialogUI.closeLoading();
                         if (json.success) {
                             mDialogUI.successMessage(json.errors.text, "成功", 240, 50, 2);
-                            SearchListByCateId(querys.cateId, querys.page);
                         }
                         else {
                             mDialogUI.errorMessage(json.errors.text, "失败", 180, 50);

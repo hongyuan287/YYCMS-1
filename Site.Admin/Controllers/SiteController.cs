@@ -10,6 +10,7 @@ using Site.Service.SiteService.SiteServices;
 using Site.Service.SiteService.Search;
 using Site.Admin.Filter;
 using System.Text.RegularExpressions;
+using Site.Service.UploadService;
 
 namespace Site.Admin.Controllers
 {
@@ -856,6 +857,7 @@ namespace Site.Admin.Controllers
             int failCount = 0;
             int result = 0;
 
+            Site_CMSBlock b_info = SiteServiceClass.Site_CMSBlock_SelectByb_gid(b_gid);
             string[] c_gidArr = c_gid.Split(new string[] { ",", "，" }, StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < c_gidArr.Length; i++)
             {
@@ -879,10 +881,30 @@ namespace Site.Admin.Controllers
                 item.i_status = (int)SiteEnum.SiteItemStatus.待审核;
                 item.i_subTitle = content.c_sub_title;
                 item.i_title = content.c_sub_title;
-                //TODO:图片需要根据该区块设置的图片尺寸，缩放该图片
+                item.i_c_img_src = string.Empty;
 
-                item.i_c_img_src = content.c_img_src;
+                //图片需要根据该区块设置的图片尺寸，缩放该图片,使用原图来进行缩放
+                if (!string.IsNullOrEmpty(b_info.b_img_size.Trim()))
+                {
+                    if (!string.IsNullOrEmpty(content.c_img_src))
+                    {
+                        int index = content.c_img_src.LastIndexOf('_');
+                        string sourceSrc = content.c_img_src.Substring(0, index) + ".jpg";
 
+                        string error;
+                        byte[] imgData = SiteUntility.GetRemoteImage(sourceSrc, out error);
+                        if (imgData != null)
+                        {
+                            List<string> srcResult = UploadServiceClass.UploadImg(
+                                  imgData,
+                                  SiteEnum.SiteUploadConfigName.baseUpload.ToString(),
+                                  new List<string>() { b_info.b_img_size },
+                                  ".jpg"
+                                  );
+                            item.i_c_img_src = srcResult[1];
+                        }
+                    }
+                }
 
                 result = SiteServiceClass.Site_CMSItem_Insert(item);
                 if (result > 0)

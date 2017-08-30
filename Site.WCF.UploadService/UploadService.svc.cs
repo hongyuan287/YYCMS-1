@@ -163,7 +163,7 @@ namespace UploadService
                     }
 
                     //保存缩略图
-                    SaveZoomImg(realSize[0], realSize[1], physicalFullName, img, watermark);
+                    SaveZoomImg(Convert.ToInt32(sizeArr[0]), Convert.ToInt32(sizeArr[1]), realSize, physicalFullName, img, watermark);
 
                     httpFullName = string.Format(dimainImgFullName, item).Replace("*", "x").Replace("\\", "/");
                     //添加缩略图地址
@@ -188,45 +188,73 @@ namespace UploadService
         /// <param name="targetH">缩略尺寸高</param>
         private List<int> CalcSize(int sourceW, int sourceH, int targetW, int targetH)
         {
-            double ratioW = (double)sourceW / (double)targetW;
-            double ratioH = (double)sourceH / (double)targetH;
+            #region 整图等比缩放 【无效】
+            //double ratioW = (double)sourceW / (double)targetW;
+            //double ratioH = (double)sourceH / (double)targetH;
 
-            List<int> realSize = new List<int>();
+            //List<int> realSize = new List<int>();
 
-            if (ratioW < 1 && ratioH < 1)
+            //if (ratioW < 1 && ratioH < 1)
+            //{
+            //    realSize.Add(sourceW);
+            //    realSize.Add(sourceH);
+            //}
+            //else
+            //{
+            //    if (sourceW >= sourceH)//按照宽的比例来缩放
+            //    {
+            //        if (ratioW > 1)//系数值有效,以宽缩放
+            //        {
+            //            targetH = (int)Math.Ceiling((double)sourceH / (double)ratioW);
+            //        }
+            //        else//以高缩放
+            //        {
+            //            targetW = (int)Math.Ceiling((double)sourceW / (double)ratioH);
+
+            //        }
+            //    }
+            //    else//按照高的比例来缩放
+            //    {
+            //        if (ratioH > 1)//系数值有效,以高缩放
+            //        {
+            //            targetW = (int)Math.Ceiling((double)sourceW / (double)ratioH);
+            //        }
+            //        else//以高缩放
+            //        {
+            //            targetH = (int)Math.Ceiling((double)sourceH / (double)ratioW);
+            //        }
+            //    }
+            //    realSize.Add(targetW);
+            //    realSize.Add(targetH);
+            //} 
+            #endregion
+
+
+            // 需要生成的缩略图在上述"画布"上的起点位置 
+            int X = 0;
+            int Y = 0;
+            // 根据原始图片及欲生成的缩略图尺寸,计算缩略图的实际尺寸及原始图片需要裁剪后的左边或上面坐标 
+            if (targetH * sourceW > targetW * sourceH)
             {
-                realSize.Add(sourceW);
-                realSize.Add(sourceH);
+                X = (sourceW - targetW * sourceH / targetH) / 2;
             }
             else
             {
-                if (sourceW >= sourceH)//按照宽的比例来缩放
-                {
-                    if (ratioW > 1)//系数值有效,以宽缩放
-                    {
-                        targetH = (int)Math.Ceiling((double)sourceH / (double)ratioW);
-                    }
-                    else//以高缩放
-                    {
-                        targetW = (int)Math.Ceiling((double)sourceW / (double)ratioH);
-
-                    }
-                }
-                else//按照高的比例来缩放
-                {
-                    if (ratioH > 1)//系数值有效,以高缩放
-                    {
-                        targetW = (int)Math.Ceiling((double)sourceW / (double)ratioH);
-                    }
-                    else//以高缩放
-                    {
-                        targetH = (int)Math.Ceiling((double)sourceH / (double)ratioW);
-                    }
-                }
-                realSize.Add(targetW);
-                realSize.Add(targetH);
+                Y = (sourceH - targetH * sourceW / targetW) / 2;
             }
+            //图片经过缩放剪裁后的宽和高
+            int W = 0;
+            int H = 0;
+            W = X > 0 ? sourceW - X * 2 : sourceW;
+            H = Y > 0 ? sourceH - Y * 2 : sourceH;
 
+
+            //返回值:[index] 0,缩略图在画布上的起点位置X; 1,缩略图在画布上的起点位置X; 2,W; 3,H
+            List<int> realSize = new List<int>();
+            realSize.Add(X);
+            realSize.Add(Y);
+            realSize.Add(W);
+            realSize.Add(H);
 
             return realSize;
 
@@ -237,12 +265,13 @@ namespace UploadService
         /// <summary>
         /// 保存缩放图
         /// </summary>
-        /// <param name="targetW"></param>
-        /// <param name="targetH"></param>
+        /// <param name="targetW">指定的宽度</param>
+        /// <param name="targetH">指定的高度</param>
+        /// <param name="targetH">指定的高度</param>
         /// <param name="fullName">物理保存路径</param>
         /// <param name="img">需要缩略的图片</param>
         /// <param name="waterMarkIndex">水印索引号</param>
-        private void SaveZoomImg(int targetW, int targetH, string fullName, Image img, string waterMarkIndex)
+        private void SaveZoomImg(int targetW, int targetH, List<int> realSize, string fullName, Image img, string waterMarkIndex)
         {
             Bitmap bmp = new Bitmap(targetW, targetH, img.PixelFormat);//最后一个参数： 保持位深度一致
             Graphics g = Graphics.FromImage(bmp);
@@ -250,9 +279,9 @@ namespace UploadService
 
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
+            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; //System.Drawing.Drawing2D.InterpolationMode.High;
 
-            g.DrawImage(img, new Rectangle(0, 0, bmp.Width, bmp.Height), new Rectangle(0, 0, img.Width, img.Height), GraphicsUnit.Pixel);
+            g.DrawImage(img, new Rectangle(0, 0, targetW, targetH), new Rectangle(realSize[0], realSize[1], realSize[2], realSize[3]), GraphicsUnit.Pixel);
             g.Save();
             g.Dispose();
 

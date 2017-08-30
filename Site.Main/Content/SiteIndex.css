@@ -195,6 +195,10 @@
     margin-top: 10px;
 }
 
+.hot_title {
+    color: #cc0000;
+}
+
     .content_cate_hot img {
         height: 60px;
         width: 60px;
@@ -224,9 +228,8 @@
 }
 
     .content_cate_hot_list ul {
-        list-style: none;
-        padding-left: 1px;
-        margin: 10px;
+        padding-left: 18px;
+        margin: 3px 9px;
     }
 
         .content_cate_hot_list ul li {

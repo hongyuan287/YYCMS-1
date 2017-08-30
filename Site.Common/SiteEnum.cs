@@ -78,5 +78,15 @@ namespace Site.Common
             [Description("blue")]
             已发布 = 4
         }
+
+
+        /// <summary>
+        /// WCF上传服务，文件保存路径的配置名称
+        /// </summary>
+        public enum SiteUploadConfigName
+        {
+            baseUpload,
+            TestUpload
+        }
     }
 }

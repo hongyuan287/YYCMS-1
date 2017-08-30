@@ -602,12 +602,8 @@
     <Content Include="UEdit\lang\zh-cn\images\upload.png" />
     <Content Include="UEdit\lang\zh-cn\zh-cn.js" />
     <Content Include="UEdit\net\Bin\Newtonsoft.Json.dll" />
-    <Content Include="UEdit\net\Bin\Newtonsoft.Json.pdb" />
-    <Content Include="UEdit\net\Bin\Newtonsoft.Json.xml" />
     <Content Include="UEdit\net\Bin\Site.Common.dll" />
-    <Content Include="UEdit\net\Bin\Site.Common.pdb" />
     <Content Include="UEdit\net\Bin\Site.Service.UploadService.dll" />
-    <Content Include="UEdit\net\Bin\Site.Service.UploadService.pdb" />
     <Content Include="UEdit\net\net.sln" />
     <Content Include="UEdit\themes\default\css\ueditor.css" />
     <Content Include="UEdit\themes\default\css\ueditor.min.css" />
