@@ -25,7 +25,10 @@
         {
             <a href="@SiteUntility.GetRelationDetailUrl(item.c_gid)" title="@item.c_title" target="_blank">
                 <div class="content_img_hot">
-                    <img src="@item.c_img_src" />
+                    @if (!string.IsNullOrEmpty(item.c_img_src))
+                    {
+                        <img src="@item.c_img_src" />
+                    }
                     <div>
                         <span class="list_title">@item.c_title</span>
                         <p>@item.c_intro</p>

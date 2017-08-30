@@ -12,7 +12,7 @@
   "imageRemoteServerPath": "E:\\admin\\image\\", /*add:远程图片服务器的物理地址*/
   "imageRemoteServerHost": "http://img.jsonyang.com/", /*add:远程图片服务器的主机域名*/
   "imageUploadConfigName": "baseUpload", /*调用本地上传服务，使用的上传保存配置*/
-  "imageUploadConfigSize": "700*10000*1", /*调用本地上传服务，使用的默认上传缩略参数，700*10000,1号水印图片 */
+  "imageUploadConfigSize": "600*500*1", /*调用本地上传服务，使用的默认上传缩略参数，600*500,1号水印图片 */
   "imagePathFormat": "upload/image/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
   /* {filename} 会替换成原文件名,配置这项需要注意中文乱码问题 */
   /* {rand:6} 会替换成随机数,后面的数字是随机数的位数 */
