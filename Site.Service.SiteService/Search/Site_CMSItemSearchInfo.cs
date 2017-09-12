@@ -10,7 +10,7 @@ namespace Site.Service.SiteService.Search
     {
         private List<string> where = new List<string>();
 
-        public string DefaultOrder = "i_createTime";
+        public string DefaultOrder = "i_createTime desc";
         public string i_createUser { get; set; }
         public int? i_status { get; set; }
         public string i_b_gid { get; set; }
